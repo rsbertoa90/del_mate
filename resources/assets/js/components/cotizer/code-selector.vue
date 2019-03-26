@@ -1,87 +1,92 @@
 <template>
-     <div  class="row">
-                <form   @submit.prevent="addSelectorProduct"
-                        class="form form-inline w-100 d-flex  " 
-                        :class="{'flex-column align-items-start justify-items-between':$mq != 'lg'}">
-                    <div class=" d-flex ml-3 mt-2 " >
-                        <label for="">Codigo</label>
-                        <input type="text" v-model="selector.code" class="form-control ml-2">
-                    </div>
-                    <div class=" d-flex ml-3 mt-2 " >
-                        <label for="">Producto</label>
-                        <label class="text-info ml-4"> {{selector.name}} </label>
-                    </div>
-                    <div class=" d-flex ml-3 mt-2 " >
-                        <label class="mr-2" for="">Unidades</label>
-                        <input type="number" min="0"  class="form-control" v-model="selector.units">
-                    </div>
-                    <button type="submit" class="btn btn-md btn-secondary ml-2" :class="{'btn-outline-success':selector.product && selector.units > 0}"> <span class="fa fa-plus"></span> </button>
-                </form>
-                <div class="w-100">
-                   <pedido v-if="list && list.length > 0" :list="list"></pedido>
-                </div>
+    <div class="row w-100 mt-3">
+        <div class="col-12 col-lg-2">
+           
+            <input type="text" placeholder="Codigo" 
+                  v-model="newitemcode" class="form-control">
+        </div>
+        <div class="col-12 col-lg-3 d-flex"  v-if="selected">
+            
+            <span> {{selected.name}} <span v-if="selectedvariant"> {{selectedvariant.name}} </span> </span>
+
+             
+             <div class="variants-clicker d-flex ml-2">
+                <span v-for="variant in selected.variants" :key="variant.id" 
+                    class="square" :class="{'selected' : variant.id == selectedvariant.id}"
+                    :style="{backgroundColor:variant.color_code}"
+                    @click="selectedvariant = variant" ></span>
+            </div>
+        </div>
+        
+        <div class="col-12 col-lg-4 d-flex" v-if="selected">
+            <button class="btn bnt-sm btn-info" @click="qty--"> - </button>
+            <input type="number" v-model="qty" style="width:90px" class="form-control" min=0>
+            <button class="btn bnt-sm btn-info" @click="qty++"> + </button>
+
+            <button class="btn btn-sm ml-3 btn-success" @click="add">Agregar</button>
+        </div>
+
+
+        
+       
     </div>
 </template>
 
-
 <script>
-import pedido from './pedido.vue';
 export default {
-    props:['list'],
-    components:{pedido},
-    computed:{
-        categories(){
-            return this.$store.getters.getCategories;
-        }
-    },
+    props:['list','products'],
     data(){
         return{
-             selector:{
-                    code:'',
-                    name:'',
-                    product:null,
-                    units:0
-                },
+            newitemcode:'',
+            selectedvariant:null,
+            qty:1,
         }
     },
-    watch:{
-         'selector.code'(){
-                var  vm = this;
-                var res =false;
-                this.categories.forEach(cat => {
-                    cat.products.forEach(prod => {
-                        if (vm.selector.code == prod.code){
-                            vm.selector.product = prod;
-                            vm.selector.name = prod.name;
-                            res = true;
-                        }
-                    });
-                });
-                if (!res){
-                    vm.selector.product = null;
-                    vm.selector.name='';
-                }
-            },
+    computed:{
+        selected(){
+            let res =  this.products.find(prod => {
+                return prod.code.trim() == this.newitemcode.trim();
+            });
+
+            if (res){
+                this.selectedvariant = res.variants[0];
+                return res;
+            }
+
+        }
     },
     methods:{
-           
+        add(){
+           this.selectedvariant.units = this.qty;
+           this.list.push(this.selectedvariant);
 
-           addSelectorProduct(){
-                var vm = this;
-                if (vm.selector.units > 0 && vm.selector.product != null ){
-                    let prod = this.selector.product;
-                    if (prod.units == undefined)
-                    {
-                        Vue.set(prod,'units',0);
-                    }
-                   prod.units = this.selector.units;
-                   vm.selector.product = null;
-                   vm.selector.code = '';
-                   vm.selector.units = 0;
-                   vm.selector.name ='';
-                   
-                }
-            },
+           this.qty=1;
+
+           this.newitemcode = '';
+        }
     }
+   
 }
 </script>
+
+<style lang="scss" scoped>
+.square{
+    display: flex;
+    width: 20px;
+    height: 20px;
+    margin:5px;
+    padding:5px;
+    border: 1px solid #ccc;
+    cursor: pointer;
+}
+
+.variants-clicker{
+   display: flex;
+   align-items:flex-start;
+}
+
+.selected{
+    transform: scale(1.5);
+    border: 2px solid blue;
+}
+</style>

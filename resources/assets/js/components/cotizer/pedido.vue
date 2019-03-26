@@ -1,5 +1,5 @@
 <template>
-    <div v-if="list && list.length > 0" class="mt-5">
+    <div v-if="list && list.length > 0" class="mt-5 kalam">
         <h5>Pedido actual:</h5>
         <table class="table table-striped">
             <thead>
@@ -10,13 +10,16 @@
                 <th>-</th>
             </thead>
             <tbody>
-                <tr v-for="product in list" :key="product.id">
-                    <td> {{product.code}} </td>
-                    <td> {{product.name}} </td>
-                    <td>  <input type="number" class="form-control" style="width:100px" v-model.lazy="product.units" > </td>
-                    <td v-if="product.units < product.pck_units"> ${{ product.price * product.units | price }} </td>
-                    <td v-else> ${{ product.pck_price * product.units | price }} </td>
-                    <td> <button class="btn btn-sm btn-outline-danger" @click="del(product)"> <span class="fa fa-times"></span> </button> </td>
+                <tr v-for="variant in list" :key="variant.id">
+                    <td> {{variant.code}} </td>
+                    <td> {{variant.product.name}} - {{variant.name}} </td>
+                    <td>  <input type="number" class="form-control" style="width:100px" 
+                                v-model.lazy="variant.units" > </td>
+                    <td > ${{ variant.product.price * variant.units | price }} </td>
+                    <td> <button class="btn btn-sm btn-outline-danger" @click="del(variant)">
+                            <span class="fa fa-times"></span> 
+                         </button> 
+                    </td>
                 </tr>
             </tbody>
         </table>
@@ -27,9 +30,9 @@
 export default {
     props:['list'],
     methods:{
-        del(product)
+        del(variant)
         {
-            product.units = 0;
+            variant.units = 0;
           
         }
     }
@@ -37,22 +40,18 @@ export default {
 </script>
 
 <style scoped>
+
+ .table,.accordion,.tr,.td,.kalam,.card{
+    font-family:  'Kalam', cursive;
+}
+
+
     .table{
         font-size:0.8rem;
-        margin-left: -2%;
-    }
-    .form-control{
-        max-width: 80px;
     }
 
-     .form-control{
-        max-width: 80px;
+    @media(min-width:600px)
+    {
+        .table{font-size:2rem;}
     }
-
-    @media(max-width:600px){
-        .table{
-            font-size:0.6rem;
-        }
-    }
-    
 </style>

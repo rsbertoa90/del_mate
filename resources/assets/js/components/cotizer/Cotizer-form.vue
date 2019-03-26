@@ -1,14 +1,15 @@
 <template>
-    <div class="">
-        <div v-if="loading" class="loader">
-            <dot-loader :loading="loading" size="200px"></dot-loader>
+    <div class="kalam" v-if="user">
+        
+         <div v-if="loading" class="loader">
+            <fade-loader :loading="loading" size="200px"></fade-loader>
         </div>
 
-        <h5>Envianos tu pedido</h5>
-        <p>Nos estaremos comunicando para confirmar tu presupuesto</p>
-        <form class="col-12" id="form">
-                <csrf></csrf>
 
+        <h5>Envianos tu pedido</h5>
+        <p>Recibiras confirmacion de tu presupuesto por email</p>
+        <form id="form" class="col-12">
+        <!-- Retiro en local -->
               <div class="col-12 row form-group-row mb-3">
                   <div class="col-12 col-lg-4">
                     <input  type="radio"
@@ -27,22 +28,33 @@
                     </span>
                   </div>
                </div> 
+       <!--  -->        
 
-                
+       <span v-if="!formData.shipping" class="warn">*Los retiros presenciales son en Pasteur 410 - CABA </span>
+       <br>
+       <span class="warn">*Los precios no incluyen IVA</span>
+        <div v-if="user.role_id > 2" class="col-12 row form-group-row mb-3">
+                    <span class=" warn" v-if="!formData.shipping">*El minimo de compra es de ${{minBuy}} </span>
+                    <span class=" warn" v-else>*El minimo de compra para envíos es de ${{minBuy}} </span>
+                    
+        </div> 
 
+             
+             
                <div class="col-12 row form-group-row">
-                   <label class="col-4 col-lg-2" for="">
-                       Nombre y Apellido 
-                      
-                    </label>
-                   <input required type="text" v-model="formData.name"  class="form-control col-8 col-lg-4">
-                </div>
-
+                   <label class="col-4 col-lg-4" for="">Nombre y Apellido <span v-if="user.role_id < 3"> (cliente) </span> </label>
+                   <input required type="text" v-model="formData.client"  class="form-control col-8 col-lg-4">
+                </div> 
+                 <div v-if="user.role_id < 3" class="col-12 row form-group-row">
+                   <label class="col-4 col-lg-4" for="">Nombre del vendedor</label>
+                   <input required type="text" v-model="formData.seller"  class="form-control col-8 col-lg-4">
+                </div> 
+               
                 <!-- DATOS DE ENVIO -->
                 <div v-if="formData.shipping">
                     
                     <div class="col-12 row form-group-row">
-                        <label class="col-4 col-lg-2" for=""> Provincia </label>
+                        <label class="col-4 col-lg-4" for=""> Provincia </label>
                         <select v-if="states.length > 0" v-model="state" class="form-control col-8 col-lg-4">
                             <option v-for="opt in states" :key="opt.id" :value="opt"> 
                                 {{opt.name}}
@@ -50,44 +62,48 @@
                         </select>
                     </div>
                     <div class="col-12 row form-group-row">
-                        <label class="col-4 col-lg-2" for=""> Ciudad </label>
-                        <select v-if="state" v-model="formData.city" class="form-control col-8 col-lg-4">
+                        <label class="col-4 col-lg-4" for=""> Ciudad </label>
+                        <select v-if="state" v-model="formData.city_id" class="form-control col-8 col-lg-4">
                             <option v-for="opt in state.cities" :key="opt.id" :value="opt.id"> 
                                 {{opt.name}}
                             </option>
                         </select>
                     </div>
                     <div class="col-12 row form-group-row">
-                        <label class="col-4 col-lg-2" for=""> Direccion </label>
+                        <label class="col-4 col-lg-4" for=""> Direccion </label>
                         <input  type="text" v-model="formData.address"  class="form-control col-8 col-lg-4">
                     </div>
                     <div class="col-12 row form-group-row">
-                        <label class="col-4 col-lg-2" for=""> Transporte </label>
+                        <label class="col-4 col-lg-4" for=""> Transporte </label>
                         <input  type="text" v-model="formData.transport"  class="form-control col-8 col-lg-4">
                     </div>
                     <div class="col-12 row form-group-row">
-                        <label class="col-4 col-lg-2" for=""> Codigo Postal </label>
+                        <label class="col-4 col-lg-4" for=""> Codigo Postal </label>
                         <input  type="text" v-model="formData.cp"  class="form-control col-8 col-lg-4">
                     </div>
                 </div>
                 <!-- /DATOS DE ENVIO -->
-
+              
                <div class="col-12 row form-group-row">
-                   <label class="col-4 col-lg-2" for="">Email</label>
-                   <input required type="email" v-model="formData.email"  class="form-control col-8 col-lg-4">
+                   <label class="col-4 col-lg-4" for="">Email</label>
+                   <input :required="user.role_id > 2" type="email" v-model="formData.email"  class="form-control col-8 col-lg-4">
                 </div> 
                <div class="col-12 row form-group-row">
-                   <label class="col-4 col-lg-2" for="">Telefono</label>
+                   <label class="col-4 col-lg-4" for="">Telefono</label>
                    <input v-model="formData.phone" type="text" class="form-control col-8 col-lg-4">
                 </div> 
                <div class="col-12 row form-group-row">
-                   <label class="col-4 col-lg-2" for="">Mensaje</label>
-                   <textarea v-model="formData.message" name="msg" class="form-control col-8 col-lg-4"></textarea>
+                   <label class="col-4 col-lg-4" for="">Mensaje</label>
+                   <textarea v-model="formData.message" name="message" class="form-control col-8 col-lg-4"></textarea>
                 </div> 
-                <button class="button btn-lg btn-outline-success offset-2 mt-2" @click.prevent.stop="send">Enviar</button>
 
+           
+               
+                <button class="button btn-lg btn-outline-success offset-2 mt-2" 
+                        @click.prevent.stop="send">
+                        Enviar
+                </button>
         </form>
-            
     </div>
 </template>
 
@@ -95,74 +111,56 @@
 export default{
     props : {
         list : {default : []},
-        total : {default : 0},
-       
-    },
-    computed:{
-        states(){
-            return this.$store.getters.getStates;
-        },
-        configs(){
-            return this.$store.getters.getConfig;
-        },
-       user(){
-           return this.$store.getters.getUser;
-       }
+        total : {default : 0}
     },
 
     data(){return{
-       
-      
         state:null,
-        cities:[],
-        loading : false,
+        loading:false,
         formData : {
-            name : '',
-            seller:'',
+            shipping:true,
+            cp:'',
+            address:'',
+            transport:'',
+            city_id:null,
             message : '',
             phone : '',
             email : '',
-            shipping: true,
-            city: null,
-            address:'',
-            transport:'',
-            cp:'',
-
-        }
-    }},
-
-    methods : {
-         minBuy(){
-             if(this.configs){
-                 if (this.formData.shipping){
-                     return this.configs.minbuy_ship;
-                 }
-                 else {return this.configs.minbuy;}
-             }
+            client:'',
+            seller:''
         },
-        validateEmail(email) {
-      
-            var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    
        
-            return re.test(String(email).toLowerCase());
+    }},
+    computed : {
+        config(){
+            return this.$store.getters.getConfig;
         },
+        minBuy(){
+          if(this.config){
+              if (this.formData.shipping){
+                  return this.config.minbuy_ship;
+              }else {return this.config.minbuy;}
+          }
+        
+        },
+        user(){
+            return this.$store.getters.getUser;
+        },
+        states(){
+            return this.$store.getters.getStates;
+        }
+    },
+    
+    methods : {
         formValid()
-        {   
-            if (this.formData.shipping && !this.formData.city)
-            {
-                  swal('Por favor selecciones una localidad ','','error');
-                 return false; 
-            }
-            else if(!this.formData.name || this.formData.name.trim() == '')
+        {
+            if(!this.formData.client || this.formData.client.trim() == '')
             {
                  swal('El campo "Nombre y Apellido" es obligatorio ','','error');
                  return false; 
             }
-            else if (!this.validateEmail(this.formData.email)){
-                swal('Hay algo mal con el mail','','error');
-                return false;
-            }
-            else if (this.formData.email.length < 4  )
+            else if (this.formData.email.length < 4 && this.user.role_id > 2)
             {
                 swal('Hay algo mal con el mail','','error');
                 return false;
@@ -170,68 +168,54 @@ export default{
             {   
                 swal('No hay productos seleccionados','','error');
                 return false;
-            } else if (this.total < this.minBuy())
+            } else if (this.total < this.minBuy)
             {
-                swal('El minimo de compra es de $'+this.minBuy(),'','error');
+                swal('El minimo de compra es de $'+this.minBuy,'','error');
                 return false;
             } else {return true;}
-        },
-        compressList(){
-            let res = [];
-            this.list.forEach(item => {
-                let compresedItem = {
-                    id : item.id,
-                    units: item.units
-                }
-                res.push(compresedItem);
-            });
-            
-            return res;
-
         },
         send(){
             if (this.formValid()){
 
                 var data = this.formData;
-                if (data.shipping)
-                {
+                data.list = JSON.stringify(this.list);
+                data.total = this.total;
+                if (data.shipping){
                     data.shipping = 1;
                 } else {data.shipping = 0;}
-
-                let list = this.compressList();
-
-
-                data.list = JSON.stringify(list);
-                data.total = this.total;
                 
                 var vm = this;
-                vm.loading = true;
-               
-   
-
-                    $.ajax({
-                        method : 'post',
-                        data : data,
-                        url : '/cotizer/send',
-                        success(){
-                            vm.loading = false;
-                            swal('Enviamos tu presupuesto', 'Te estaremos contactando a la brevedad', 'success')
-                                .then(() => {
-                                    window.location.replace('/');
-                                });
-                        } 
-                    });
-                
+                vm.loading=true;
+                $.ajax({
+                    method : 'post',
+                    data : data,
+                    url : '/cotizer/send',
+                    success(r){
+                      /*   console.log(r); */
+                        if(vm.user.role_id > 2){
+                            swal('Enviamos tu presupuesto', 'Te estaremos contactando a la brevedad','success')
+                                .then(confirm => {window.location.replace('/')});
+                        }
+                        else{
+                            swal('Orden guardada', 'Revisa el panel de administracion de ordenes','success')
+                                .then(confirm =>{window.location.replace('/admin/cotizador')});
+                        }
+                    } 
+                });
             }
         }
-    },
-   
-    
+    }
 }
 
 </script>
 
-<style lang="scss" scoped>
+<style scoped lang="scss">
+
+   .kalam {
+
+        font-family:  'Kalam', cursive;
+    }
+
 .loader {
     position : fixed;
     height: 100%;
@@ -246,18 +230,9 @@ export default{
     padding-top: 5%;
 }
 
-input[type="radio"] {
-  -webkit-appearance: checkbox; /* Chrome, Safari, Opera */
-  -moz-appearance: checkbox;    /* Firefox */
-  -ms-appearance: checkbox;     /* not currently supported */
-  -ms-transform: scale(2); /* IE */
-  -moz-transform: scale(2); /* FF */
-  -webkit-transform: scale(2); /* Safari and Chrome */
-  -o-transform: scale(2); /* Opera */
-  padding: 10px;
-  margin-right: 15px;
-}
-.radioText{
-    font-size:1.2rem;
-}
+    .warn{
+        font-size: 0.9rem;
+        color: red;
+        font-style: italic;
+    }
 </style>

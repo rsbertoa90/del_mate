@@ -23,9 +23,6 @@ class CreateProductsTable extends Migration
             $table->string('code');
             $table->string('name');
             $table->integer('price')->default(0);
-            $table->integer('pck_units')->default(1);
-            $table->integer('pck_price')->default(0);
-            $table->string('image')->default('/storage/images/app/no-image.png');
             $table->softDeletes();
             $table->timestamps();
         });

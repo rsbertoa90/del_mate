@@ -1,9 +1,9 @@
 <template v-if="!viewed">
 <transition enter-active-class="animate animated bounceIn">
 
-    <div v-if="scrolled && !viewed" class="overlay">
-        <div class="image-container">
-            <v-lazy-image :src="imagesrc"></v-lazy-image>
+    <div v-if="scrolled && !viewed" class="overlay ">
+        <div class="image-container ">
+            <v-lazy-image :src="imagesrc" ></v-lazy-image>
             <transition enter-active-class="animate animated slideInUp">
                 <div  v-if="enterhand" class="animation "
                         :class="{redcircle:clicknow}">
@@ -18,7 +18,7 @@
         </div>
          <transition enter-active-class="animate animated bounceIn">
                     <div class="speech-bubble" v-if="clicknow">
-                        <span>Haz Click en una categoria para desplegar los productos</span>
+                        <span>Click en una categoria para ver detalles de productos</span>
                     </div>
         </transition>
         <button class="btn btn-block btn-danger" style="max-width:400px"  @click="viewed=true"> Cerrar </button>
@@ -46,7 +46,7 @@ export default {
     methods: {
     handleScroll () {
         if (!this.scrolled){
-            this.scrolled = window.scrollY > 50;
+            this.scrolled = window.scrollY > 150;
 
             setTimeout(() => {
                 this.enterhand=true;
@@ -85,21 +85,21 @@ export default {
 
     .animation{
         position: absolute;
-        top:70px;
+        top:40px;
         left:20px;
         color:rgb(19, 18, 18);
         font-size: 3rem;
        
     }
     .image-container{
-        width: 50%;
+        width: 90%;
         position: relative;
     }
     .overlay{
         display:flex;
         flex-direction: column;
         justify-content: center;
-        align-items:flex-start;
+        align-items:center;
         position:fixed;
         top:0;
         left:0;
@@ -112,7 +112,7 @@ export default {
        position: fixed;
        top:50px;
        right: 50px;
-        background: #57b2bb;
+        background: #EB1889;
         border-radius: .4em;
         width: 50%;
         padding: 20px;
@@ -129,21 +129,25 @@ export default {
 	width: 0;
 	height: 0;
 	border: 37px solid transparent;
-	border-right-color: #57b2bb;
+	border-right-color: #EB1889;
 	border-left: 0;
 	border-bottom: 0;
 	margin-top: -18.5px;
 	margin-left: -37px;
 }
   @media(min-width:900px){
+
+       .image-container{
+           width: 20%;
+           margin-left: 0;
+       }
+
       .overlay{
           align-items:center;
           justify-content: center;
       }
 
-      .image-container{
-          margin-left: 22%;
-      }
+     
 
       .speech-bubble{
            top:150px;
