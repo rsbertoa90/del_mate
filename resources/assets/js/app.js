@@ -35,6 +35,8 @@ Vue.use(VueMq, {
 });
 
 
+
+
 /* import DatatableFactory from 'vuejs-datatable';
 
 Vue.use(DatatableFactory); */
@@ -43,21 +45,7 @@ import moment from 'moment';
 window.moment = moment;
 
 
-
-Vue.filter('price', val => {
-    if (val % 1 != 0) {
-        return val.toFixed(2);
-    }
-    return val;
-});
-Vue.filter('ucFirst', val => {
-    val = val.toLowerCase();
-
-    return val.charAt(0).toUpperCase() + val.slice(1);
-});
-Vue.filter('uc', val => {
-    return val.toUpperCase();
-});
+require('./filters');
 
 import swal from 'sweetalert';
 window.swal = swal;
@@ -93,20 +81,16 @@ import {
 Vue.component('csrf', require('./components/csrf.vue'));
 Vue.component('dot-loader', require('vue-spinner/src/DotLoader.vue'));
 Vue.component('app-frame', require('./components/layout/frame.vue'));
-Vue.component('app-nav', require('./components/layout/navbar.vue'));
+Vue.component('my-app', require('./components/App.vue'));
 
 
-Vue.component('app-cotizer', require('./components/cotizer/Cotizer.vue'));
-/* Vue.component('app-cotizer', require('./components/cotizer/Cotizer.vue'));
- */
-Vue.component('app-category', require('./components/category/Category.vue'));
-Vue.component('app-cotizer-test', require('./components/cotizer/Cotizer-test.vue'));
 
-require('./admin-components');
+import Routes from './routes.js';
 
 const app = new Vue({
     el: '#app',
     store,
+    router:Routes,
     methods: {
         ...mapActions({
             fetchCategories: 'fetchCategories',

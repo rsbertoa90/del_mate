@@ -4,33 +4,21 @@
     <div v-if="product" class="product-card" >
         
         <div class="d-flex justify-content-center text-center">
-            <span class="text-center title"> {{product.name}} </span>
+            <span class="text-center title"> {{product.name | ucFirst}} </span>
         </div>
-        <div  class="image-container" v-if="selectedVariant" 
-                @mouseover="hovered=true" @mouseleave="hovered=false">
-           <v-lazy-image v-if="selectedVariant.images[0]" class="image" :src="selectedVariant.images[0].url" :alt="product.name" />
-           <v-lazy-image v-else class="image" src="/storage/images/app/no-photo.png" :alt="product.name" />
-           <transition enter-active-class="animated fadeIn faster"
-                        leave-active-class="animated fadeOut faster position-absolute">
-                <v-lazy-image v-if="selectedVariant.images[1] && hovered" 
-                         class="overlay image" :src="selectedVariant.images[1].url" :alt="product.name" />
-               <!--  <div v-if="!transition" style="height:500px; width:100%;"></div> -->
-           </transition>
+        <div  class="image-container">
+           <v-lazy-image v-if="product.images[0]" class="image" :src="product.images[0].url" :alt="product.name" />
+           <v-lazy-image v-else class="image" src="/storage/images/app/no-image.png" :alt="product.name" />
+           
             <div v-if="config && !config.hide_prices" class="price-overlay">
                <span> ${{product.price |price}} </span>
             </div>
                      
         </div>
-         <div class="variants-clicker d-flex mt-1">
-            <span v-for="variant in product.variants" :key="variant.id" 
-                class="square" :class="{'selected-square': selectedVariant.id == variant.id}"  :style="{backgroundColor:variant.color_code}"
-                @click="selectedVariant = variant"></span>
-        </div>
-        <span v-if="product.messures" class="text-secondary">Medidas: {{product.messures}} </span>
-        <span v-else class="text-secondary">Medidas no disponibles</span>
-        <div v-if="selectedVariant" class="row">
+         
+        <div class="row">
             <label class="col-4 quiero">Quiero</label>
-            <input type="number" min="0" class="form-control col-7 quiero-input " v-model="selectedVariant.units">
+            <input type="number" min="0" class="form-control col-7 quiero-input " v-model="product.units">
         </div>
       
     </div>
@@ -42,7 +30,7 @@ export default {
     props:['product'],
     data(){
         return{
-            selectedVariant:null,
+            
             image:null,
             hovered:false,
             transition:true
@@ -50,33 +38,10 @@ export default {
     },
     computed:{
          config(){return this.$store.getters.getConfig},
-        images()
-        {
-            let res = [];
-            
-            this.product.variants.forEach(variant => {
-                if (variant.images && variant.images.length > 0)
-                {
-                    res.push(variant.images);
-                }
-            });
-
-            return res;
-        },
-         frontvariant(){
-            return this.product.variants.find(p => {
-                return p.isfront;
-            });
-        }
+        
+       
     },
-    created(){
-            this.selectedVariant = this.product.variants.find(p => {
-                                        return p.isfront;
-                                    });
-            if (!this.selectedVariant){
-                this.selectedVariant = this.product.variants[0];
-            }
-        }
+   
     
    
    
@@ -97,6 +62,9 @@ export default {
       /*   border:1px solid #ccc; */
         padding:15px;
         cursor: pointer;
+        .image{
+            width:100%;
+        }
     }
 
 .quiero{
@@ -129,10 +97,7 @@ export default {
 }
 
 
-.variants-clicker{
-    height:40px;
-    width:90%;
-}
+
 .position-absolute{
     position: absolute;
 }

@@ -24,6 +24,7 @@ mix.webpackConfig({
 
 mix.js('resources/assets/js/app.js', 'public/js')
    .sass('resources/assets/sass/app.scss', 'public/css') 
+   .extract(['vue', 'vue-router', 'vuex', 'moment', 'vue-mq', 'v-lazy-image', 'sweetalert', 'bootstrap'])
    ;
 
 if (mix.inProduction()) {

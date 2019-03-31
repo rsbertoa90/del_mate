@@ -34,22 +34,7 @@
                 <button @click="destroyCat(category)" v-if="!category.products || !category.products.length" class="btn btn-danger">BORRAR</button>
             </div>
         </div>
-        <div v-if="supliers" class="col-12 col-lg-6 d-flex flex-column justify-content-start align-items-center">
-            <h4>Proveedores</h4> 
-               <hr>
-
-            <div class="border border-success p-2 m-3 d-flex flex-column">
-                <h4 class="text-success">Nuevo proveedor</h4>
-                <textarea v-model="newsup"></textarea>
-                <button class="btn btn-lg btn-outline-info"
-                    @click="newSuplier()">Guardar</button>
-            </div>
-            <hr>
-            <div v-for="suplier in supliers" :key="suplier.id"  class="d-flex flex-column m-2">
-                <textarea v-model.lazy="suplier.name" @change="update('suplier',suplier)"></textarea>
-                 <button @click="destroySup(suplier)" v-if="!suplier.products || !suplier.products.length" class="btn btn-danger">BORRAR</button>
-            </div>
-        </div>
+      
        
     </div>
 </template>
@@ -62,7 +47,7 @@ export default {
             newcat:null,
             newsup:null,
             categories:[],
-            supliers:[]
+           
         }
     },
     methods:{
@@ -75,12 +60,7 @@ export default {
                     this.refresh();
                 });   
         },
-        destroySup(sup){
-            this.$http.delete('/admin/suplier/'+sup.id)
-                .then(res => {
-                    this.refresh();
-                });
-        },
+     
         newCategory(){
             var vm=this;
             if (this.newcat){
@@ -94,19 +74,7 @@ export default {
                     });
             }
         },
-        newSuplier(){
-            var vm =this;
-            if (this.newsup){
-                let data = {
-                    name : this.newsup
-                }
-                 this.$http.post('/admin/suplier',data)
-                  .then(res => {
-                        vm.refresh();
-                        vm.newsup = null;
-                    });
-            }
-        },
+       
         updateCategoryDescription(category){
             let data = {
                 id : category.id,
@@ -129,10 +97,7 @@ export default {
             .then(response => {
                 this.categories = response.data;
             });
-        this.$http.get('/api/supliers')
-            .then(response => {
-                this.supliers = response.data;
-            });    
+       
         }
     },
     created(){

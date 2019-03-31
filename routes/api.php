@@ -34,6 +34,8 @@ Route::get('/metadata/{page}', 'MetadataController@get');
 
 Route::get('/states','StateController@get');
 
+Route::get('/meta','MetadataController@getAll');
+
 Route::get('/city/{id}','StateController@getCity');
 
 Route::get('/custom-text/{code}','CustomTextController@get');

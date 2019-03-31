@@ -22,7 +22,7 @@ class ProductController extends Controller
     public function getAll()
     {   
         return Cache::rememberForever('products', function () {
-             return Product::with('category')->with('suplier')->with('images')->get();
+             return Product::with('category')->with('images')->get();
 
         }); 
        
@@ -70,13 +70,12 @@ class ProductController extends Controller
     public function save(Request $request)
     {
         $this->forgetCaches();
-        if ( $request->pck_price == 0 )
-        {
-            $request->pck_price = $request->price;
-        }
+
+      
        $product = Product::create($request->except('_token'));
        $product = Product::with('category')->find($product->id);
-       return $product;
+       
+       return;
     }
 
     public function delete($id)

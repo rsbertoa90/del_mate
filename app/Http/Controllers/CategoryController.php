@@ -40,17 +40,11 @@ class CategoryController extends Controller
     {
         $this->forgetCaches();
        
-        $max = Category::withTrashed()->find(\DB::table('categories')->max('id'));
-
-        $id = $max->id+1;
         $category = new Category();
-        $category->id = $id;
         $category->name = $request->name;
-
         $category->save();
-        
-     
-        return $category;
+    
+        return;
     }
 
     public function update(Request $request)

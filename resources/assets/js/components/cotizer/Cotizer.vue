@@ -1,25 +1,15 @@
 <template>
     <div class="container">   
-        <div class="row">
-            <h1 class="col-12 col-lg-6 text-center kalam" v-if="user && user.role_id > 2">Hace tu pedido</h1>
-            <h1 class="col-12 col-lg-6 text-center kalam" v-else>Tomar pedido</h1>
-            <a href="/lista-de-precios" class="col-12 col-lg-6 btn btn-lg btn-outline-info kalam"> <span class="fas fa-download"></span> Descargar lista de precios</a>
+        <div class="row d-flex justify-content-center text-center">
+          <h1>MAYORISTA DEL MATE</h1>
         </div>
-        <div class="row">
-            <home-info></home-info>
-        </div>
+        
              
-          <div class="row d-flex flex-column" v-if="user && user.role_id <= 2">
-            <code-selector @listChange="listChange" :products="products" :list="list" v-if="user.role_id <= 2"></code-selector>
-             <div v-if="list.length > 0">
-                <pedido :list="list"></pedido>
-             </div>
-          </div>  
-             
+         
              <hr>
              
-        <div class="row">
-            <div v-for="(product,i) in notPausedProducts" 
+        <div class="row" v-for="category in categories" :key="category.id">
+            <div v-for="(product,i) in category.products" 
                   :key="'product-'+product.id" 
                   class=" flex-wrap col-12 col-lg-4 p-lg-4" >
                <cotizer-productcard :product="product" :first="i == 0"></cotizer-productcard>
@@ -57,12 +47,18 @@
  import { mapGetters } from 'vuex';
     import cotizerProductcard from './CotizerProductCard.vue';
     import codeSelector from './code-selector.vue';
-    import homeInfo from '../home/info.vue';
-    
+   
+    import cotizerForm from './Cotizer-form.vue';
     import pedido from './pedido.vue';
     import tutorial from './tutorial.vue'
     export default {
-        components : {homeInfo,pedido,tutorial,cotizerProductcard,codeSelector},
+        components : {cotizerForm,pedido,tutorial,cotizerProductcard,codeSelector},
+        metaInfo(){
+            return {
+                title: this.metainfo
+
+            }
+        },
         data(){
             return {
                 selector:{
@@ -81,29 +77,30 @@
             'selector.code'(){
                 var  vm = this;
                 var res =false;
-                this.products.forEach(prod => {
-                    prod.variants.forEach(variant => {
-                        if (vm.selector.code == variant.code){
-                            vm.selector.variant = variant;
-                            vm.selector.name = variant.name;
+                this.categories.forEach(cat => {
+                    cat.products.forEach(product => {
+                        if (vm.selector.code == product.code){
+                            vm.selector.product = product;
+                            vm.selector.name = product.name;
                             res = true;
                         }
                     });
                 });
                 if (!res){
-                    vm.selector.variant = null;
+                    vm.selector.product = null;
                     vm.selector.name='';
                 }
             },
             total() {
                    var result = [];
                    var vm = this;
-                    vm.products.forEach(function(product){
-                    var vars = product.variants.filter(function(el){     
-                        return ( el.units != null & el.units > 0 );
+
+                    vm.categories.forEach(cat => {
+                    var prods = cat.products.filter(function(p){     
+                        return ( p.units != null & p.units > 0 );
                     });
-                    if (vars.length > 0){
-                        result.push(vars);
+                    if (prods.length > 0){
+                        result.push(prods);
                     }
                     
                 });
@@ -114,30 +111,38 @@
         },
         computed: {
             ...mapGetters({
-                products : 'getProductsnotpaused',
+               categories : 'getCategories',
                user : 'getUser',
-               configs:'getConfig'
+               configs:'getConfig',
+               allmeta: 'getMeta'
             }),
-            notPausedProducts(){
-                return this.products.filter(p => {
-                    return !p.paused
+            meta(){
+                if (this.allmeta) return this.allmeta.find(m => {
+                    return m.page == 'cotizer';
                 });
             },
+
             
             total() {
-                var vm = this;
-                var tot = 0;
-                vm.products.forEach(function(product){
-                    product.variants.forEach(function(variant){
-                        if (variant.units > 0)
-                        {
+                if(this.categories){
+
+                    var vm = this;
+                    var tot = 0;
+                    vm.categories.forEach(cat => {
+    
+                        cat.products.forEach(function(product){
                             
-                           tot+= variant.product.price * variant.units
+                                if (product.units > 0)
+                                {
+                                    
+                                   tot+= product.price * product.units
+                                    
+                                }
                             
-                        }
-                    });
-                });
-                return tot;
+                        });
+                    })
+                    return tot;
+                }
             }
         },
 

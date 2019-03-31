@@ -12,17 +12,7 @@
             <input v-model.lazy="product.code" @change="saveChange(product,'code')" 
                     type="text" class="form-control smallField">
         </td>
-        <td >
-            <select class="form-control" v-model="product.suplier_id" 
-                    @change="changed(product,'suplier')">
-                <option v-for="suplier in supliers" 
-                        :key="suplier.id" 
-                        :value="suplier.id"
-                        :selected="suplier.id == product.suplier_id"> 
-                    {{suplier.name}} 
-                </option>
-            </select>
-        </td>
+       
         <td>
             <select class="form-control" v-model="product.category_id"
                     @change="changed(product,'category')" >
@@ -47,20 +37,8 @@
             </div>
         
         </td>
-        <td    class="smallField">
-            <input step="1" v-model.lazy="product.pck_units" @change="saveChange(product,'pck_units')"
-                type="number" class="form-control smallField ">
-        </td>
-        <td>
-            <div class="row w-100 d-flex align-items-center">
-                
-                $<input  v-model.lazy="product.pck_price" 
-                        @change="saveChange(product,'pck_price')"
-                        
-                type="number" step=".01" class="form-control smallField">
-            </div>
-        
-        </td>
+       
+     
         <td class="d-flex flex-column justify-content-center align-items-center p-0">
             <input class="form-control" type="checkbox" v-model="product.selected">
             <button @click.prevent="deleteProduct(product)" class="btn btn-sm btn-outline-danger m-1">

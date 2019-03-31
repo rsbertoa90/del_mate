@@ -12,11 +12,11 @@
         <div v-else class="row">
             
              <div class="col-12 d-flex justify-content-center">
-                 <img src="/storage/images/app/MAJU.jpg" style="width : 200px ; height: 110px" alt="logo">
+                 <img src="/storage/images/app/logo.png" style="width : 200px ; height: 110px" alt="logo">
              </div>
              <hr>
              <div class="col-12">
-                <admin-create :supliers="supliers" :categories="categories" @productSaved="refresh"></admin-create>
+                <admin-create  :categories="categories" @productSaved="refresh"></admin-create>
              </div>
              <hr>
             <!-- <div class="col-12 d-flex flex-column justify-content-center align-items-center">
@@ -29,7 +29,7 @@
                     <div class="col-6 row">
                         <label class="text-info font-weight-bold col-4">Ordenar por</label>
                         <select class="form-control col-6" v-model="orderBy" id="">
-                            <option value="suplier.name">Proveedor</option>
+                          
                             <option value="category.name">Categoria</option>
                             <option value="name">Producto</option>
                             <option value="price">Precio</option>
@@ -45,10 +45,7 @@
                                         v-for="category in categories" :key="category.id" :value="category.id"> 
                                         {{category.name}}
                                 </option>
-                                <option v-if="orderBy == 'suplier.name'" 
-                                        v-for="suplier in supliers" :key="suplier.id" :value="suplier.id"> 
-                                        {{suplier.name}}
-                                </option>
+                               
                             </select>
                         </div>
                     </div>
@@ -70,12 +67,10 @@
                                 <thead class="">
                                     <th>imagen</th>
                                     <th>Codigo</th>
-                                    <th>Proveedor</th>
                                     <th>Categoria</th>
                                     <th>Producto</th>
                                     <th>Precio</th>
-                                    <th >Unidades x bulto</th>
-                                    <th >Precio en bulto</th>
+                                   
                                 </thead>
                                 <!-- <transition-group tag="tbody" 
                                                     enter-active-class="animated slideInLeft faster "
@@ -83,7 +78,6 @@
                                  -->   <tr is="product-row" v-for="product in filteredProducts" 
                                                 :key="product.id" 
                                                 :product="product"
-                                                :supliers="supliers"
                                                 :categories="categories"
                                                 @refresh="refresh"
                                                 >
@@ -134,10 +128,10 @@ import paginator from './admin/paginator.vue';
                 products : [],
                 categories :[],
                 list : [],
-                supliers : [],
+                
                
                 showModal : false,
-                orderBy : 'suplier.name'
+                orderBy : 'category.name'
             }
         },
         computed:{
@@ -162,7 +156,7 @@ import paginator from './admin/paginator.vue';
                     {
                         var prop = null;
                         if (this.orderBy == 'category.name'){prop = 'category'}
-                        else if (this.orderBy == 'suplier.name'){prop = 'suplier'}
+                       
                         
                         if (prop && this.selector.id != 'all'){
                             var filtered = this.products.filter(prod => {
@@ -218,13 +212,12 @@ import paginator from './admin/paginator.vue';
                   let prodName = prod.name.toLowerCase().trim();
                   term = term.toLowerCase().trim();
                   let categoryName = prod.category.name.toLowerCase().trim();
-                  let suplierName = prod.suplier.name.toLowerCase().trim();
+                  
                   let code = prod.code.toLowerCase().trim();
 
                   if (
                       prodName.indexOf(term) > -1
                       || categoryName.indexOf(term) > -1
-                      || suplierName.indexOf(term) > -1
                       || code.indexOf(term) > -1
                   ){return true;}
                   else{return false;}
@@ -294,19 +287,7 @@ import paginator from './admin/paginator.vue';
                                 prod.selected = this.selector.checked;
                             }
                         });
-                    } else if (this.orderBy == 'suplier.name')
-                    {
-                         this.products.forEach(prod => {
-                            if (prod.suplier.id == this.selector.id)
-                            {
-                                if (prod.selected == undefined)
-                                {
-                                    Vue.set(prod,'selected',true);
-                                }
-                                prod.selected = this.selector.checked;
-                            }
-                        });
-                    }
+                    } 
                 }
 
 
@@ -324,13 +305,7 @@ import paginator from './admin/paginator.vue';
                         vm.categories = _.sortBy(vm.categories,'name');
                     }
                 });
-                $.ajax({
-                    url : 'api/supliers',
-                    success(response){
-                        vm.supliers = response;
-                         vm.supliers = _.sortBy(vm.supliers,'name');
-                    }
-                });
+               
                 $.ajax({
                 url : 'api/products',
                 success(response){

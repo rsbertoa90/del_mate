@@ -21,9 +21,25 @@ class MetadataController extends Controller
         return Metadata::where('page',$page)->get()->first();
     }
 
-    public function page()
+     public function getAll(){
+        $pages = ['home',
+                  'cotizador',
+                  'contacto',];
+        
+        $res = [];
+
+        foreach ($pages as $page)
+        {
+            $res[] = Metadata::findOrCreate($page);
+        }
+
+        return $res;
+    }
+
+
+    public function page($page)
     {
-        $meta = Metadata::findOrCreate('home');
+        $meta = Metadata::where('page',$page)->get()->first();
         return view('admin.metadatas',compact('meta'));
     } 
 
