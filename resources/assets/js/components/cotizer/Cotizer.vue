@@ -55,7 +55,7 @@
         components : {cotizerForm,pedido,tutorial,cotizerProductcard,codeSelector},
         metaInfo(){
             return {
-                title: this.metainfo
+                title: this.meta ? this.meta.title : 'Mayorista del Mate'
 
             }
         },

@@ -39,9 +39,9 @@
                         <div class="d-flex align-items-center ">
                              <label class="text-info font-weight-bold">Filtrar</label>
                             <input type="checkbox" class="form-control" v-model="selector.checked" @change="checkSelect">
-                            <select class="form-control col-4"  v-model="selector.id">
+                            <select v-if="orderBy == 'category.name'"  class="form-control col-4"  v-model="selector.id">
                                 <option value="all"> Todo</option>
-                                <option v-if="orderBy == 'category.name'" 
+                                <option 
                                         v-for="category in categories" :key="category.id" :value="category.id"> 
                                         {{category.name}}
                                 </option>
@@ -63,7 +63,7 @@
 
                 </paginator>
                 </div>
-                <table id="table" class="table table-striped table-bordered ">
+                <table id="table" class="table table-striped table-bordered " v-if="filteredProducts">
                                 <thead class="">
                                     <th>imagen</th>
                                     <th>Codigo</th>
@@ -118,15 +118,14 @@ import paginator from './admin/paginator.vue';
         },
         data(){
             return {
-                loading:true,
+                
                 searchMode:false,
                 searchTerm:'',
                 selectedPage:1,
                 productsPerPage:30,
                 selector : {id :'all', checked : false},
                 variation:0,
-                products : [],
-                categories :[],
+                
                 list : [],
                 
                
@@ -135,6 +134,26 @@ import paginator from './admin/paginator.vue';
             }
         },
         computed:{
+            loading(){
+                return this.products ? false : true;
+            },
+            categories(){
+                return this.$store.getters.getCategories;
+            },
+            products(){
+                if (this.categories)
+                {
+                    let res = [];
+                    this.categories.forEach(cat => {
+                        if(cat.products){
+                            res = res.concat(cat.products);
+                        }
+                       
+                    });
+                
+                    return res;
+                }
+            },
             selectedProducts()
             {
                 var list =[];
@@ -298,23 +317,7 @@ import paginator from './admin/paginator.vue';
          
             refresh(){
                 var vm = this;
-                $.ajax({
-                    url : 'api/categories',
-                    success(response){
-                        vm.categories = response;
-                        vm.categories = _.sortBy(vm.categories,'name');
-                    }
-                });
-               
-                $.ajax({
-                url : 'api/products',
-                success(response){
-                    vm.products = response;
-                    vm.products = _.sortBy(vm.products, vm.orderBy);
-                    vm.loading=false;
-                    
-                }
-            });
+                this.$store.dispatch('fetchCategories');
             },
             saveChange(product,field){
                 var data = {

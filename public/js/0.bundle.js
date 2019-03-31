@@ -172,7 +172,7 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
     components: { cotizerForm: __WEBPACK_IMPORTED_MODULE_3__Cotizer_form_vue___default.a, pedido: __WEBPACK_IMPORTED_MODULE_4__pedido_vue___default.a, tutorial: __WEBPACK_IMPORTED_MODULE_5__tutorial_vue___default.a, cotizerProductcard: __WEBPACK_IMPORTED_MODULE_1__CotizerProductCard_vue___default.a, codeSelector: __WEBPACK_IMPORTED_MODULE_2__code_selector_vue___default.a },
     metaInfo: function metaInfo() {
         return {
-            title: this.metainfo
+            title: this.meta ? this.meta.title : 'Mayorista del Mate'
 
         };
     },

@@ -5,7 +5,10 @@
             <app-nav></app-nav>
         </header>    
         <div class="py-4">
-            <router-view></router-view>
+            <transition enter-active-class="animate fadeIn "
+                        leave-active-class="annimate fadeOut  position-absolute">
+                <router-view></router-view>
+            </transition>
         </div>
     </div>
 </template>

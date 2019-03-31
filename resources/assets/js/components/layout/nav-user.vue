@@ -36,7 +36,9 @@
 </template>
 
 <style lang="scss">
+
 .bg-fucsia{
+
 background: rgba(76,76,76,1);
 background: -moz-linear-gradient(left, rgba(76,76,76,1) 0%, rgba(17,17,17,1) 0%, rgba(102,102,102,1) 2%, rgba(71,71,71,1) 8%, rgba(89,89,89,1) 12%, rgba(0,0,0,1) 16%, rgba(44,44,44,1) 17%, rgba(43,43,43,1) 19%, rgba(28,28,28,1) 22%, rgba(255,32,128,1) 97%, rgba(255,32,128,1) 100%);
 background: -webkit-gradient(left top, right top, color-stop(0%, rgba(76,76,76,1)), color-stop(0%, rgba(17,17,17,1)), color-stop(2%, rgba(102,102,102,1)), color-stop(8%, rgba(71,71,71,1)), color-stop(12%, rgba(89,89,89,1)), color-stop(16%, rgba(0,0,0,1)), color-stop(17%, rgba(44,44,44,1)), color-stop(19%, rgba(43,43,43,1)), color-stop(22%, rgba(28,28,28,1)), color-stop(97%, rgba(255,32,128,1)), color-stop(100%, rgba(255,32,128,1)));
@@ -45,9 +47,12 @@ background: -o-linear-gradient(left, rgba(76,76,76,1) 0%, rgba(17,17,17,1) 0%, r
 background: -ms-linear-gradient(left, rgba(76,76,76,1) 0%, rgba(17,17,17,1) 0%, rgba(102,102,102,1) 2%, rgba(71,71,71,1) 8%, rgba(89,89,89,1) 12%, rgba(0,0,0,1) 16%, rgba(44,44,44,1) 17%, rgba(43,43,43,1) 19%, rgba(28,28,28,1) 22%, rgba(255,32,128,1) 97%, rgba(255,32,128,1) 100%);
 background: linear-gradient(to right, rgba(76,76,76,1) 0%, rgba(17,17,17,1) 0%, rgba(102,102,102,1) 2%, rgba(71,71,71,1) 8%, rgba(89,89,89,1) 12%, rgba(0,0,0,1) 16%, rgba(44,44,44,1) 17%, rgba(43,43,43,1) 19%, rgba(28,28,28,1) 22%, rgba(255,32,128,1) 97%, rgba(255,32,128,1) 100%);
 filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#4c4c4c', endColorstr='#ff2080', GradientType=1 );
+
 }
     .text-white{
         color:#fff;
        
     }
+
+
 </style>

@@ -1,5 +1,5 @@
 <template>
-    <tr>
+    <tr v-if="product && categories">
         <td>
             <img v-if="product.images && product.images.length > 0" 
                 :src="product.images[0].url" 
@@ -19,7 +19,7 @@
                 <option v-for="category in categories" 
                         :key="category.id" 
                         :value="category.id"
-                        :selected ="product.category.id == category.id"
+                        :selected ="product.category_id == category.id"
                         > 
                     {{category.name}} 
                 </option>

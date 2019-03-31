@@ -21286,6 +21286,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
 
 
 
@@ -22049,7 +22052,24 @@ var render = function() {
       _vm._v(" "),
       _c("header", [_c("app-nav")], 1),
       _vm._v(" "),
-      _c("div", { staticClass: "py-4" }, [_c("router-view")], 1)
+      _c(
+        "div",
+        { staticClass: "py-4" },
+        [
+          _c(
+            "transition",
+            {
+              attrs: {
+                "enter-active-class": "animate fadeIn ",
+                "leave-active-class": "annimate fadeOut  position-absolute"
+              }
+            },
+            [_c("router-view")],
+            1
+          )
+        ],
+        1
+      )
     ],
     1
   )
