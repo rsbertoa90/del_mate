@@ -1,7 +1,7 @@
 {
-    "/js/example-component.bundle.js": "/js/example-component.bundle.js?id=3a50622f88326604132d",
-    "/js/app.js": "/js/app.js?id=1a62a4db51f0ca3cfb97",
-    "/css/app.css": "/css/app.css?id=051adf7bdaa609f8e635",
-    "/js/vendor.js": "/js/vendor.js?id=8c050bb1742671aefe13",
-    "/js/manifest.js": "/js/manifest.js?id=6e2f5864d3987ea8044c"
+    "/js/example-component.bundle.js": "/js/example-component.bundle.js",
+    "/js/app.js": "/js/app.js",
+    "/css/app.css": "/css/app.css",
+    "/js/vendor.js": "/js/vendor.js",
+    "/js/manifest.js": "/js/manifest.js"
 }

@@ -6,8 +6,8 @@
                 <div class="card-header">Login</div>
 
                 <div class="card-body">
-                    <form method="POST" action="/login" aria-label="login" ref="form" @submit.prevent="send">
-                        <csrf></csrf>
+                    <form  aria-label="login" ref="form" @submit.prevent="send">
+                    
 
                         <div class="form-group row">
                             <label for="email" class="col-sm-4 col-form-label text-md-right">Email</label>

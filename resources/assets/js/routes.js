@@ -50,10 +50,14 @@ import "core-js/modules/es6.array.iterator";
 
 
 
+const Login = () => import('./components/login/Login.vue');
+
 const Home = () =>  import('./components/home/Home.vue') ; 
 const Cotizer = () => import('./components/cotizer/Cotizer.vue');
+
 const Admin = () => import('./components/admin/Admin.vue');
-const Login = () => import('./components/login/Login.vue');
+const Orders = () => import('./components/admin/Orders.vue'); 
+const Metadata = () => import('./components/admin/Meta.vue');
 
 
 const router = new VueRouter({
@@ -71,6 +75,19 @@ const router = new VueRouter({
             component:Admin,
             beforeEnter:guardAdmin
         },
+        {
+            path:'/admin/pedidos',
+            name:'orders',
+            component:Orders,
+            beforeEnter:guardAdmin
+        },
+        {
+            path:'/admin/metadata',
+            name:'meta',
+            component:Metadata,
+            beforeEnter:guardAdmin
+        },
+
         {
             path:'/',
             name:'home',

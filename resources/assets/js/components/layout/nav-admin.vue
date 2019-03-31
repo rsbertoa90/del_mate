@@ -30,9 +30,9 @@
                     </router-link>
                     </li>
                     <li class="nav-item ">
-                        <router-link class="nav-link text-white" to="/logout">
+                        <a class="nav-link text-white" href="/logout">
                             Salir
-                        </router-link>
+                        </a>
                     </li>
                 </ul>
             </div>
