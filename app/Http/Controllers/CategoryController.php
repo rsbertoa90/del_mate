@@ -44,7 +44,7 @@ class CategoryController extends Controller
         $category->name = $request->name;
         $category->save();
     
-        return;
+        return $category;
     }
 
     public function update(Request $request)

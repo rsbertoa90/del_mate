@@ -1204,7 +1204,7 @@ var store = new __WEBPACK_IMPORTED_MODULE_1_vuex__["default"].Store({
         fetchCategories: function fetchCategories(_ref5, payload) {
             var commit = _ref5.commit;
 
-            __WEBPACK_IMPORTED_MODULE_0_vue___default.a.http.get('/api/productsnotpaused').then(function (response) {
+            __WEBPACK_IMPORTED_MODULE_0_vue___default.a.http.get('/api/categories').then(function (response) {
                 commit('setCategories', response.data);
             });
         }
@@ -1323,13 +1323,15 @@ var app = new Vue({
         fetchCategories: 'fetchCategories',
         fetchUser: 'fetchUser',
         fetchConfig: 'fetchConfig',
-        fetchStates: 'fetchStates'
+        fetchStates: 'fetchStates',
+        fetchMeta: 'fetchMeta'
     })),
     created: function created() {
         this.fetchCategories();
         this.fetchUser();
         this.fetchConfig();
         this.fetchStates();
+        this.fetchMeta();
     }
 });
 

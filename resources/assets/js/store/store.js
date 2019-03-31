@@ -91,7 +91,7 @@ export const store = new Vuex.Store({
         fetchCategories: ({
             commit
         }, payload) => {
-            Vue.http.get('/api/productsnotpaused')
+            Vue.http.get('/api/categories')
                 .then(response => {
                     commit('setCategories', response.data);
                 });

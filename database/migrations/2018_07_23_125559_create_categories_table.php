@@ -17,6 +17,9 @@ class CreateCategoriesTable extends Migration
             $table->increments('id');
             $table->string('code')->unique()->nullable();
             $table->string('name')->unique();
+            $table->text('homedescription')->nullable();
+            $table->text('metatitle')->nullable();
+            $table->text('metadescription')->nullable();
             $table->softDeletes();
             $table->timestamps();
         });

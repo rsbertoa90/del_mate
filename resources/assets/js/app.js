@@ -105,6 +105,7 @@ const app = new Vue({
             fetchUser: 'fetchUser',
             fetchConfig: 'fetchConfig',
             fetchStates: 'fetchStates',
+            fetchMeta: 'fetchMeta',
         }),
         
         
@@ -114,5 +115,6 @@ const app = new Vue({
             this.fetchUser();
             this.fetchConfig();
             this.fetchStates();
+            this.fetchMeta();
         }
 });

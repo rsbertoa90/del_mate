@@ -57,7 +57,7 @@ const Cotizer = () => import('./components/cotizer/Cotizer.vue');
 
 const Admin = () => import('./components/admin/Admin.vue');
 const Orders = () => import('./components/admin/Orders.vue'); 
-const Metadata = () => import('./components/admin/Meta.vue');
+const Metadata = () => import('./components/admin/metadata/Super.vue');
 
 
 const router = new VueRouter({
