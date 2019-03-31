@@ -13,6 +13,8 @@ require('laravel-mix-purgecss');
  |
  */
 
+
+
 mix.webpackConfig({
     plugins: [
         // ...
@@ -20,6 +22,13 @@ mix.webpackConfig({
     ],
     // list of additional plugins
 });
+
+mix.config.webpackConfig.output = {
+    chunkFilename: 'js/[name].bundle.js',
+    publicPath: '/',
+};
+
+
 
 
 mix.js('resources/assets/js/app.js', 'public/js')

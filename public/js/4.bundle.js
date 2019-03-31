@@ -1,0 +1,1 @@
+webpackJsonp([4],{"8PDn":function(n,t){n.exports={render:function(){this.$createElement;this._self._c;return this._m(0)},staticRenderFns:[function(){var n=this.$createElement,t=this._self._c||n;return t("div",[t("h1",[this._v("HOME")])])}]}},uJX6:function(n,t,e){var r=e("VU/8")(null,e("8PDn"),!1,null,null,null);n.exports=r.exports}});

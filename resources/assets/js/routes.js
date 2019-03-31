@@ -49,12 +49,11 @@ import "core-js/modules/es6.array.iterator";
  */
 
 
-/* 
-const Home = () =>  import('./components/home/Home.vue') ; */
-import Home from './components/home/Home.vue';
-import Cotizer from './components/cotizer/Cotizer.vue';
-import Admin from './components/admin/Admin.vue';
-import Login from './components/login/Login.vue';
+
+const Home = () =>  import('./components/home/Home.vue') ; 
+const Cotizer = () => import('./components/cotizer/Cotizer.vue');
+const Admin = () => import('./components/admin/Admin.vue');
+const Login = () => import('./components/login/Login.vue');
 
 
 const router = new VueRouter({
