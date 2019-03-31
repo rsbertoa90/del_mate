@@ -22058,12 +22058,7 @@ var render = function() {
         [
           _c(
             "transition",
-            {
-              attrs: {
-                "enter-active-class": "animate fadeIn ",
-                "leave-active-class": "annimate fadeOut  position-absolute"
-              }
-            },
+            { attrs: { "enter-active-class": "animated fadeIn fast faster " } },
             [_c("router-view")],
             1
           )
