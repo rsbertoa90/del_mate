@@ -54,4 +54,11 @@ class Product extends Model
     {
         return $this->hasMany(ProductImage::class)->orderBy('first','desc');
     }
+
+    public function getUrlAttribute()
+    {
+        $res = $this->category->slug.'/'.$this->slug;
+        $res = str_replace($res, '//','/');
+        return $res;
+    }
 }

@@ -1,6 +1,27 @@
 webpackJsonp([9],{
 
-/***/ 82:
+/***/ 171:
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", [_c("router-view")], 1)
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-7fd20288", module.exports)
+  }
+}
+
+/***/ }),
+
+/***/ 99:
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
@@ -8,7 +29,7 @@ var normalizeComponent = __webpack_require__(1)
 /* script */
 var __vue_script__ = null
 /* template */
-var __vue_template__ = __webpack_require__(87)
+var __vue_template__ = __webpack_require__(171)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -25,7 +46,7 @@ var Component = normalizeComponent(
   __vue_scopeId__,
   __vue_module_identifier__
 )
-Component.options.__file = "resources/assets/js/components/home/Home.vue"
+Component.options.__file = "resources/assets/js/components/category/Category.vue"
 
 /* hot reload */
 if (false) {(function () {
@@ -34,9 +55,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-3a7dd8a8", Component.options)
+    hotAPI.createRecord("data-v-7fd20288", Component.options)
   } else {
-    hotAPI.reload("data-v-3a7dd8a8", Component.options)
+    hotAPI.reload("data-v-7fd20288", Component.options)
   }
   module.hot.dispose(function (data) {
     disposed = true
@@ -45,34 +66,6 @@ if (false) {(function () {
 
 module.exports = Component.exports
 
-
-/***/ }),
-
-/***/ 87:
-/***/ (function(module, exports, __webpack_require__) {
-
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _vm._m(0)
-}
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", [_c("h1", [_vm._v("HOME")])])
-  }
-]
-render._withStripped = true
-module.exports = { render: render, staticRenderFns: staticRenderFns }
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-3a7dd8a8", module.exports)
-  }
-}
 
 /***/ })
 

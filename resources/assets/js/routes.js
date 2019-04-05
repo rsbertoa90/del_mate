@@ -58,7 +58,9 @@ const Cotizer = () => import('./components/cotizer/Cotizer.vue');
 const Admin = () => import('./components/admin/Admin.vue');
 const Orders = () => import('./components/admin/Orders.vue'); 
 const Metadata = () => import('./components/admin/metadata/Super.vue');
-
+const Category = () => import ('./components/category/Category.vue');
+const CategoryIndex = () => import ('./components/category/categoryIndex.vue');
+const Product = () => import ('./components/category/product/Product.vue');
 
 const router = new VueRouter({
     mode:'history',
@@ -98,6 +100,22 @@ const router = new VueRouter({
             path:'/cotizador',
             name:'cotizador',
             component: Cotizer
+        },
+        {
+            path:'/:category_slug',
+            name:'category',
+            component: Category,
+            children:[
+                {
+                    path: '',
+                    component: CategoryIndex
+                },
+                {
+                    path:':product_slug',
+                    component:Product
+                }
+            ]
+            
         }
     ]
     

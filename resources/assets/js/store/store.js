@@ -28,6 +28,62 @@ export const store = new Vuex.Store({
         getStates(store) {
             return store.states;
         },
+        getNotPaused(store) {
+            let res = [];
+            store.categories.forEach(cat => {
+                cat.products = cat.products.filter(prod => {
+                    return !prod.paused;
+                });
+                if (cat.products.length > 0) {
+                    res.push(cat);
+                }
+            });
+            return res;
+        },
+        getOffers(store)
+        {
+            let res = [];
+            store.categories.forEach(cat => {
+                let add = cat.products.filter(p => {
+                    return p.offer;
+                });
+                res = res.concat(add);
+            });
+            return res;
+        },
+        getTotal(store) {
+            var tot = 0;
+            store.categories.forEach(function (category) {
+                category.products.forEach(function (product) {
+                    if (product.units > 0) {
+                        if (product.units < product.pck_units) {
+                            tot += product.price * product.units;
+                        } else {
+                            tot += product.pck_price * product.units
+                        }
+                    }
+                });
+            });
+            return tot;
+        },
+        getList(store) {
+            var result = [];
+
+            store.categories.forEach(function (category) {
+                var prods = category.products.filter(function (el) {
+                    return (el.units != null & el.units > 0);
+                });
+                if (prods.length > 0) {
+                    result.push(prods);
+
+                }
+
+            });
+
+
+            return [].concat.apply([], result);
+        }
+
         
     },
     mutations: {

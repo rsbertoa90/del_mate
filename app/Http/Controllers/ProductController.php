@@ -34,7 +34,7 @@ class ProductController extends Controller
 
         $product = Product::find($request->product);
         $field = $request->field;
-        if ($request->field == 'paused'){
+        if ($request->field == 'paused' || $request->field == 'offer'){
            $request->value = (int) ($request->value == 'true');
         }
         $product->$field = $request->value;

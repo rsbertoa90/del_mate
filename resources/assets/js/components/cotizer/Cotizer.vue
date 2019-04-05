@@ -9,6 +9,7 @@
              <hr>
              
         <div class="row" v-for="category in categories" :key="category.id">
+            <h2 class="col-12 text-center">{{category.name|ucFirst}}</h2>
             <div v-for="(product,i) in category.products" 
                   :key="'product-'+product.id" 
                   class=" flex-wrap col-12 col-lg-4 p-lg-4" >
@@ -31,13 +32,7 @@
             </div>    
         </transition>
         <hr>
-        <div>
-            <cotizer-form :list="list" :total="total"></cotizer-form>
-        </div>
-        <div v-if="list.length > 0">
-            <pedido :list="list"></pedido>
-        </div>
-       
+      
       <!--   <tutorial></tutorial> -->
     </div>
 </template>
@@ -48,11 +43,9 @@
     import cotizerProductcard from './CotizerProductCard.vue';
     import codeSelector from './code-selector.vue';
    
-    import cotizerForm from './Cotizer-form.vue';
-    import pedido from './pedido.vue';
     import tutorial from './tutorial.vue'
     export default {
-        components : {cotizerForm,pedido,tutorial,cotizerProductcard,codeSelector},
+        components : {tutorial,cotizerProductcard,codeSelector},
         metaInfo(){
             return {
                 title: this.meta ? this.meta.title : 'Mayorista del Mate'

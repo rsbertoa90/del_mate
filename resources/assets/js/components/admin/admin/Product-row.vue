@@ -25,9 +25,13 @@
                 </option>
             </select>
         </td>
-        <td >
-            <textarea rows="4" type="text" v-model.lazy="product.name" 
+        <td class="d-flex flex-column" >
+            <textarea  placeholder="Nombre" rows="1" type="text" v-model.lazy="product.name" 
                     @change="saveChange(product,'name')" class="form-control"></textarea>
+            <textarea  placeholder="descripcion" rows="2" type="text" v-model.lazy="product.description" 
+                    @change="saveChange(product,'description')" class="form-control"></textarea>
+            <textarea  placeholder="URL" rows="1" type="text" v-model.lazy="product.slug" 
+                    @change="saveSlug(product,'slug')" class="form-control"></textarea>
         </td>
         <td>
             <div class="row w-100 d-flex align-items-center">
@@ -47,6 +51,9 @@
             <button @click.prevent="togglePause(product)" class="btn btn-sm m-1" :class="{'btn-info' : !product.paused, 'btn-success': product.paused}">
                 <i :class="{'fa fa-pause-circle' : !product.paused , 'fa fa-play' : product.paused}"></i>
             </button>
+            <button @click.prevent="toggleOffer(product)" class="btn btn-sm m-1" :class="{'btn-secondary' : !product.offer, 'btn-info': product.offer}">
+                Oferta
+            </button>
             
         </td>
         <image-modal v-if="product && showModal" :product="product"  
@@ -65,6 +72,11 @@ export default {
         showModal:false
     }},
     methods:{
+         saveSlug(){
+            this.product.slug  = this.product.slug.replace(/\s+/g, '-').toLowerCase().trim();
+                this.saveChange(this.product,'slug');
+        },
+
             refresh(){
                 this.$emit('refresh');
             },
@@ -81,6 +93,14 @@ export default {
                 var vm = this;
                 product.paused = !product.paused;
                 vm.saveChange(product,'paused');
+              
+
+                
+            },
+             toggleOffer(product){
+                var vm = this;
+                product.offer = !product.offer;
+                vm.saveChange(product,'offer');
               
 
                 
