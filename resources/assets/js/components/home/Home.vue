@@ -17,10 +17,27 @@
 import  offers from './offers.vue';
 export default {
     components:{offers,},
+    metaInfo(){return{
+        title: this.metadata ? this.metadata.metatitle : 'Mayorista  del Mate',
+        meta:[
+            {name:'description', content: this.metadata ? this.metadata.metadescription : ''}
+ 
+ ]
+    }},
     computed:{
+        metadatas(){
+            return this.$store.getters.getMeta;
+        },
+        metadata(){
+            if (this.metadatas){
+                return this.metadatas.find(m => {
+                    return m.page == 'home'
+                });
+            }
+        },
         categories(){
             return this.$store.getters.getNotPaused;
         }
-    }
 }
+    }
 </script>

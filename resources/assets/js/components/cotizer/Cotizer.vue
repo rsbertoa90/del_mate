@@ -48,7 +48,10 @@
         components : {tutorial,cotizerProductcard,codeSelector},
         metaInfo(){
             return {
-                title: this.meta ? this.meta.title : 'Mayorista del Mate'
+                title: this.meta ? this.meta.metatitle : 'Mayorista del Mate',
+                meta:[
+                    {name:'description',content:this.meta.metadescription}
+                ]
 
             }
         },
@@ -111,7 +114,7 @@
             }),
             meta(){
                 if (this.allmeta) return this.allmeta.find(m => {
-                    return m.page == 'cotizer';
+                    return m.page == 'cotizador';
                 });
             },
 

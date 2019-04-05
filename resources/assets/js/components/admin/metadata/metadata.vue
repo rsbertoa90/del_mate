@@ -59,11 +59,11 @@ export default {
     methods :{
         save(meta,field){
             var data = {
-                page : meta.page,
+                id : meta.id,
                 field : field,
                 value : meta[field]
             }
-            this.$http.put('/super/metadata',data);
+            this.$http.put('/admin/metadata',data);
         }
     }
 

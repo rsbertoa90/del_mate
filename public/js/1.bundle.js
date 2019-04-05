@@ -106,7 +106,8 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
     components: { tutorial: __WEBPACK_IMPORTED_MODULE_3__tutorial_vue___default.a, cotizerProductcard: __WEBPACK_IMPORTED_MODULE_1__CotizerProductCard_vue___default.a, codeSelector: __WEBPACK_IMPORTED_MODULE_2__code_selector_vue___default.a },
     metaInfo: function metaInfo() {
         return {
-            title: this.meta ? this.meta.title : 'Mayorista del Mate'
+            title: this.meta ? this.meta.metatitle : 'Mayorista del Mate',
+            meta: [{ name: 'description', content: this.meta.metadescription }]
 
         };
     },
@@ -167,7 +168,7 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
     }), {
         meta: function meta() {
             if (this.allmeta) return this.allmeta.find(function (m) {
-                return m.page == 'cotizer';
+                return m.page == 'cotizador';
             });
         },
         total: function total() {

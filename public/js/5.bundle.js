@@ -26,7 +26,24 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     components: { offers: __WEBPACK_IMPORTED_MODULE_0__offers_vue___default.a },
+    metaInfo: function metaInfo() {
+        return {
+            title: this.metadata ? this.metadata.metatitle : 'Mayorista  del Mate',
+            meta: [{ name: 'description', content: this.metadata ? this.metadata.metadescription : '' }]
+        };
+    },
+
     computed: {
+        metadatas: function metadatas() {
+            return this.$store.getters.getMeta;
+        },
+        metadata: function metadata() {
+            if (this.metadatas) {
+                return this.metadatas.find(function (m) {
+                    return m.page == 'home';
+                });
+            }
+        },
         categories: function categories() {
             return this.$store.getters.getNotPaused;
         }

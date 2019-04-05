@@ -22086,25 +22086,6 @@ var render = function() {
               1
             ),
             _vm._v(" "),
-            _c(
-              "li",
-              { staticClass: "nav-item text-white" },
-              [
-                _c(
-                  "router-link",
-                  {
-                    staticClass: "nav-link text-white",
-                    attrs: { to: "/contacto" }
-                  },
-                  [
-                    _c("span", { staticClass: "fa fa-phone" }),
-                    _vm._v("    Contactate con nosotros\n                   ")
-                  ]
-                )
-              ],
-              1
-            ),
-            _vm._v(" "),
             _vm._m(1),
             _vm._v(" "),
             _vm._m(2)

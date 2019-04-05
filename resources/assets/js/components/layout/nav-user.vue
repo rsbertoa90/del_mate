@@ -13,11 +13,11 @@
                                 <span class="fa fa-shopping-cart"></span> Hace tu pedido <span class="sr-only">(current)</span>
                             </router-link>
                         </li>
-                        <li class="nav-item text-white">
+           <!--              <li class="nav-item text-white">
                             <router-link class="nav-link text-white" to="/contacto">
                                 <span class="fa fa-phone"></span>    Contactate con nosotros
                             </router-link>
-                        </li>
+                        </li> -->
                         <li class="nav-item text-white">
                              <a class="nav-link text-white" target="_blank" href="/MAJU-lista-de-precios.pdf" >
                                 <span class="fa fa-download"></span> Descargar lista de precios

@@ -32,11 +32,11 @@
             s.parentNode.insertBefore(wf, s);
         })();
     </script>
-
+{{-- 
     @if ($meta =  App\Metadata::findOrCreate('home'))
         <title>{{$meta->metatitle }}</title>
         <meta name="description" content="{{$meta->metadescription }}">
-    @endif
+    @endif --}}
     
     <!-- Scripts -->
     <script src="{{ mix('/js/manifest.js') }}" defer></script>
