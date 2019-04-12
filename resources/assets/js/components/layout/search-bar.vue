@@ -1,9 +1,9 @@
 <template>
     <div class="d-flex">
         <input v-model.lazy="searchTerm" ref="field" type="text" class="form-control border-fucsia" placeholder="BUSCAR" >
-        <button class="btn bg-white fucsia border-fucsia">
+        <router-link class="btn bg-white fucsia border-fucsia" to="/busqueda">
             <fa-icon icon="search" class="mb-1"></fa-icon>
-        </button>
+        </router-link>
     </div>
 </template>
 

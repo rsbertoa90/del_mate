@@ -30,9 +30,10 @@ export default {
     computed:{
         productUrl(){
             let cats = this.$store.getters.getCategories;
-            let category = cats.filter(c => {
-                return c.id = this.product.category_id;
+            let category = cats.find(c => {
+                return c.id == this.product.category_id;
             });
+           console.log(this.product);
             let url = category.slug + '/' + this.product.slug;
             url = url.replace('//','/');
             return url;

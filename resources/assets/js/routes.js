@@ -55,6 +55,7 @@ const Login = () => import('./components/login/Login.vue');
 const Home = () =>  import('./components/home/Home.vue') ; 
 const Cotizer = () => import('./components/cotizer/Cotizer.vue');
 const ShoppingCart = () => import('./components/shoppingCart/ShoppingCart.vue');
+const SearchResults = () => import ('./components/search-results/SearchResults.vue')
 
 const Admin = () => import('./components/admin/Admin.vue');
 const Orders = () => import('./components/admin/Orders.vue'); 
@@ -62,6 +63,7 @@ const Metadata = () => import('./components/admin/metadata/Super.vue');
 const Category = () => import ('./components/category/Category.vue');
 const CategoryIndex = () => import ('./components/category/categoryIndex.vue');
 const Product = () => import ('./components/category/product/Product.vue');
+
 
 const router = new VueRouter({
     mode:'history',
@@ -108,6 +110,12 @@ const router = new VueRouter({
             path:'/carrito',
             name:'carrito',
             component: ShoppingCart
+        },
+        
+        {
+            path:'/busqueda',
+            name:'busqueda',
+            component: SearchResults
         },
         {
             path:'/:category_slug',

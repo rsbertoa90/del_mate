@@ -1,4 +1,4 @@
-webpackJsonp([11],[
+webpackJsonp([12],[
 /* 0 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -3774,7 +3774,7 @@ String.prototype.ucfirst = function () {
 /* import filters from './filters.js'; */
 
 Vue.component('csrf', function () {
-    return __webpack_require__.e/* import() */(8).then(__webpack_require__.bind(null, 124));
+    return __webpack_require__.e/* import() */(9).then(__webpack_require__.bind(null, 125));
 });
 /* 
 Vue.component('csrf', require('./components/csrf.vue')); */
@@ -24116,35 +24116,43 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "d-flex" }, [
-    _c("input", {
-      directives: [
+  return _c(
+    "div",
+    { staticClass: "d-flex" },
+    [
+      _c("input", {
+        directives: [
+          {
+            name: "model",
+            rawName: "v-model.lazy",
+            value: _vm.searchTerm,
+            expression: "searchTerm",
+            modifiers: { lazy: true }
+          }
+        ],
+        ref: "field",
+        staticClass: "form-control border-fucsia",
+        attrs: { type: "text", placeholder: "BUSCAR" },
+        domProps: { value: _vm.searchTerm },
+        on: {
+          change: function($event) {
+            _vm.searchTerm = $event.target.value
+          }
+        }
+      }),
+      _vm._v(" "),
+      _c(
+        "router-link",
         {
-          name: "model",
-          rawName: "v-model.lazy",
-          value: _vm.searchTerm,
-          expression: "searchTerm",
-          modifiers: { lazy: true }
-        }
-      ],
-      ref: "field",
-      staticClass: "form-control border-fucsia",
-      attrs: { type: "text", placeholder: "BUSCAR" },
-      domProps: { value: _vm.searchTerm },
-      on: {
-        change: function($event) {
-          _vm.searchTerm = $event.target.value
-        }
-      }
-    }),
-    _vm._v(" "),
-    _c(
-      "button",
-      { staticClass: "btn bg-white fucsia border-fucsia" },
-      [_c("fa-icon", { staticClass: "mb-1", attrs: { icon: "search" } })],
-      1
-    )
-  ])
+          staticClass: "btn bg-white fucsia border-fucsia",
+          attrs: { to: "/busqueda" }
+        },
+        [_c("fa-icon", { staticClass: "mb-1", attrs: { icon: "search" } })],
+        1
+      )
+    ],
+    1
+  )
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -36030,7 +36038,7 @@ import "core-js/modules/es6.array.iterator";
  */
 
 var Login = function Login() {
-    return __webpack_require__.e/* import() */(7).then(__webpack_require__.bind(null, 114));
+    return __webpack_require__.e/* import() */(8).then(__webpack_require__.bind(null, 114));
 };
 
 var Home = function Home() {
@@ -36042,24 +36050,27 @@ var Cotizer = function Cotizer() {
 var ShoppingCart = function ShoppingCart() {
     return __webpack_require__.e/* import() */(4).then(__webpack_require__.bind(null, 117));
 };
+var SearchResults = function SearchResults() {
+    return __webpack_require__.e/* import() */(5).then(__webpack_require__.bind(null, 118));
+};
 
 var Admin = function Admin() {
-    return __webpack_require__.e/* import() */(1).then(__webpack_require__.bind(null, 118));
+    return __webpack_require__.e/* import() */(1).then(__webpack_require__.bind(null, 119));
 };
 var Orders = function Orders() {
-    return __webpack_require__.e/* import() */(6).then(__webpack_require__.bind(null, 119));
+    return __webpack_require__.e/* import() */(7).then(__webpack_require__.bind(null, 120));
 };
 var Metadata = function Metadata() {
-    return __webpack_require__.e/* import() */(0).then(__webpack_require__.bind(null, 120));
+    return __webpack_require__.e/* import() */(0).then(__webpack_require__.bind(null, 121));
 };
 var Category = function Category() {
-    return __webpack_require__.e/* import() */(10).then(__webpack_require__.bind(null, 121));
+    return __webpack_require__.e/* import() */(11).then(__webpack_require__.bind(null, 122));
 };
 var CategoryIndex = function CategoryIndex() {
-    return __webpack_require__.e/* import() */(5).then(__webpack_require__.bind(null, 122));
+    return __webpack_require__.e/* import() */(6).then(__webpack_require__.bind(null, 123));
 };
 var Product = function Product() {
-    return __webpack_require__.e/* import() */(9).then(__webpack_require__.bind(null, 123));
+    return __webpack_require__.e/* import() */(10).then(__webpack_require__.bind(null, 124));
 };
 
 var router = new __WEBPACK_IMPORTED_MODULE_1_vue_router__["default"]({
@@ -36098,6 +36109,10 @@ var router = new __WEBPACK_IMPORTED_MODULE_1_vue_router__["default"]({
         path: '/carrito',
         name: 'carrito',
         component: ShoppingCart
+    }, {
+        path: '/busqueda',
+        name: 'busqueda',
+        component: SearchResults
     }, {
         path: '/:category_slug',
         component: Category,

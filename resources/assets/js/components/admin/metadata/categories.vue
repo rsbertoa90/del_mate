@@ -123,7 +123,8 @@ export default {
                 this.selected.slug  = this.selected.slug.replace(/\s+/g, '-').toLowerCase().trim();
             }
         }
-    }
+    },
+    
 
 }
 </script>

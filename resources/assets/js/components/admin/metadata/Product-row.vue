@@ -58,6 +58,23 @@ export default {
             
           
          
+    },
+    watch:{
+        'product.slug'(){
+            if(this.product.slug)
+            {
+                this.product.slug  = this.product.slug.replace(/\s+/g, '-').toLowerCase().trim();
+            }
+        }
+    },
+    mounted()
+    {
+        if (this.product && !this.product.slug)
+        {   
+           this.product.slug = this.product.name;
+           this.product.slug  = this.product.slug.replace(/\s+/g, '-').toLowerCase().trim(); 
+            this.saveChange(this.product,'slug');
+        }
     }
 }
 </script>

@@ -6,19 +6,20 @@
 
     
       
-         
+        
           <div style="text-align: center">
-              <h1> {{category.name}} </h1>
+              <v-lazy-image v-if="category.image" :src="category.image"></v-lazy-image>
+              <h1 v-if="!category.image"> {{category.name |uc}} </h1>
           </div>
           <div v-if="category.description" class="text-center mt-4">
               <p> {{category.description}} </p>
           </div>
           <br>
-          <div class="container">
-                    <div v-for="product in category.products" :key="product.id" class="col-lg-3 col-12">
-                        <router-link class="row" :to="category.slug+product.slug">
+          <div class="row">
+                    <div v-for="product in category.products" :key="product.id" class=" col-12 col-lg-3">
+                     
                             <productCard :product="product" class="mt-4"></productCard>
-                        </router-link>
+                
                     </div>
           </div>
            
