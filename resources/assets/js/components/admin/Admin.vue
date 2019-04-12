@@ -216,14 +216,14 @@ import paginator from './admin/paginator.vue';
                 this.searchTerm='';
             },
             search(){
-                this.loading=true;
+              
                 let term = this.searchTerm;
                 this.selector.id = 'all';
                 this.selectedPage = 1;
                 setTimeout(() => {
                     this.searchTerm = term;
                     this.searchMode = true;
-                    this.loading=false;
+                   
                 }, 100);
                 this.searchMode = true;  
             },
@@ -242,7 +242,7 @@ import paginator from './admin/paginator.vue';
                   else{return false;}
             },
             searchFilter(){
-                this.loading=true;
+              
                 let terms = this.searchTerm.split(' ');
                 let res = [];
                 this.products.forEach(prod => {
@@ -257,7 +257,7 @@ import paginator from './admin/paginator.vue';
                         res.push(prod);
                     }
                 });
-                this.loading=false;
+               
                 return res;
 
                 

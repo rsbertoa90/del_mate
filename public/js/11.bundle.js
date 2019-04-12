@@ -1,14 +1,14 @@
 webpackJsonp([11],{
 
-/***/ 111:
+/***/ 120:
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
-var normalizeComponent = __webpack_require__(1)
+var normalizeComponent = __webpack_require__(30)
 /* script */
-var __vue_script__ = __webpack_require__(188)
+var __vue_script__ = __webpack_require__(208)
 /* template */
-var __vue_template__ = __webpack_require__(189)
+var __vue_template__ = __webpack_require__(209)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -48,7 +48,7 @@ module.exports = Component.exports
 
 /***/ }),
 
-/***/ 188:
+/***/ 208:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -61,23 +61,45 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 
 /* harmony default export */ __webpack_exports__["default"] = ({
+    metaInfo: function metaInfo() {
+        return {
+            title: this.metatitle,
+            meta: [{ charset: 'utf-8' }, { vmid: 'description', name: 'description', content: this.metadescription }]
+        };
+    },
+
     computed: {
+        metatitle: function metatitle() {
+            if (this.product) {
+                return this.product.metatitle ? this.product.metatitle : this.product.name + ' por mayor';
+            }
+        },
+        metadescription: function metadescription() {
+            if (this.product) {
+                if (this.product.metadescription) {
+                    return this.product.metadescription;
+                } else if (this.product.description) {
+                    return this.product.description;
+                } else return this.product.name + " " + 'por mayor';
+            }
+        },
         categories: function categories() {
             return this.$store.getters.getNotPaused;
         },
         product: function product() {
             var vm = this;
             var res = null;
-            console.log(vm.$route.params.product_slug);
             this.categories.forEach(function (c) {
                 var p = c.products.find(function (pr) {
-                    console.log(pr.slug);
-                    return pr.slug == '/' + vm.$route.params.product_slug;
+                    return pr.slug.trim().toLowerCase() == '/' + vm.$route.params.product_slug.trim().toLowerCase();
+                    return resp;
                 });
                 if (p) {
-                    return p;
+                    res = p;
+                    return;
                 }
             });
+            return res;
         }
     }
 
@@ -85,7 +107,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /***/ }),
 
-/***/ 189:
+/***/ 209:
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {

@@ -1,22 +1,17 @@
 <template>
     <div>
-        <h1>HOME</h1>
-        <div class="row">
-            <offers></offers>
-        </div>
-        <div class="d-flex flex-column">
-           <router-link v-for="category in categories" :key="category.id"
-                        :to="category.slug">
-               {{category.name}}
-           </router-link> 
-        </div>
+        <home-banners></home-banners>
+        <homeInfo class="mt-4"></homeInfo>
+        <homeOffers></homeOffers>
     </div>
 </template>
 
 <script>
-import  offers from './offers.vue';
+import homeBanners from './banners.vue';
+import homeInfo from './info.vue';
+import  homeOffers from './offers.vue';
 export default {
-    components:{offers,},
+    components:{homeOffers,homeBanners,homeInfo},
     metaInfo(){return{
         title: this.metadata ? this.metadata.metatitle : 'Mayorista  del Mate',
         meta:[

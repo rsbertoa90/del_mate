@@ -100,22 +100,28 @@ export default {
             this.$http.put('/admin/category',data);
         },
         saveSlug(category){
-            this.selected.slug  = this.selected.slug.replace(/\s+/g, '-').toLowerCase().trim();
-            
-            let dups = this.categories.find(c => {
-                return c.slug === this.selected.slug && c.id != this.selected.id;
-            });
+            if(this.selected.slug){
 
-            if (dups){
-                swal('Cuidado!','Ya existe una categoria con esa URL','warning');
-            }else{
-                this.save(category,'slug');
+                this.selected.slug  = this.selected.slug.replace(/\s+/g, '-').toLowerCase().trim();
+                
+                let dups = this.categories.find(c => {
+                    return c.slug === this.selected.slug && c.id != this.selected.id;
+                });
+
+                if (dups){
+                    swal('Cuidado!','Ya existe una categoria con esa URL','warning');
+                }else{
+                    this.save(category,'slug');
+                }
             }
         }
     },
     watch:{
         'selected.slug'(){
-            this.selected.slug  = this.selected.slug.replace(/\s+/g, '-').toLowerCase().trim();
+            if(this.selected.slug){
+
+                this.selected.slug  = this.selected.slug.replace(/\s+/g, '-').toLowerCase().trim();
+            }
         }
     }
 

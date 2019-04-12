@@ -15,10 +15,10 @@ class AddSlugToProducts extends Migration
     {
         Schema::table('products', function (Blueprint $table) {
             //
-            $table->string('slug');
+            $table->string('slug')->nullable();
         });
         
-        \DB::statement("UPDATE products SET slug = REPLACE(name,' ','_')");
+       
     }
 
     /**

@@ -14,9 +14,9 @@
                     <td> {{product.code}} </td>
                     <td> {{product.name}} </td>
                     <td>  <input type="number" class="form-control" style="width:100px" v-model.lazy="product.units" > </td>
-                    <td v-if="product.units < product.pck_units"> ${{ product.price * product.units | price }} </td>
-                    <td v-else> ${{ product.pck_price * product.units | price }} </td>
-                    <td> <button class="btn btn-sm btn-outline-danger" @click="del(product)"> <span class="fa fa-times"></span> </button> </td>
+                    <td> ${{ product.price * product.units | price }} </td>
+                   
+                    <td> <button class="btn btn-sm btn-outline-danger" @click="del(product)"> <fa-icon icon="times"></fa-icon> </button> </td>
                 </tr>
             </tbody>
         </table>
@@ -42,7 +42,7 @@ export default {
 
 <style scoped>
     .table{
-        font-size:0.8rem;
+        font-size:1.2rem;
         margin-left: -2%;
     }
     .form-control{

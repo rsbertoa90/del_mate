@@ -48,15 +48,13 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
     <link rel="preconnect" href="https://ajax.googleapis.com" crossorigin>
     
-    <!-- Fonts -->
-    <script defer src="https://use.fontawesome.com/releases/v5.7.2/js/all.js" integrity="sha384-0pzryjIRos8mFBWMzSSZApWtPl/5++eIfzYmTgBBmXYdhvxPc+XcFEk+zJwDgWbP" crossorigin="anonymous"></script>
    
     <!-- Styles -->
     <link href="{{ mix('css/app.css') }}" rel="stylesheet" >
     
 
     <!-- Global site tag (gtag.js) - Google Analytics -->
-    <link rel="preconnect" href="https://www.google-analytics.com">
+   {{--  <link rel="preconnect" href="https://www.google-analytics.com">
     <script defer async src="https://www.googletagmanager.com/gtag/js?id=UA-126973762-1"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
@@ -64,7 +62,7 @@
         gtag('js', new Date());
 
         gtag('config', 'UA-126973762-1');
-    </script>
+    </script> --}}
 
    
 

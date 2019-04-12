@@ -91,7 +91,7 @@ Vue.component('dot-loader', require('vue-spinner/src/DotLoader.vue'));
 
 Vue.component('my-app', require('./components/App.vue'));
 
-
+require('./faicons.js');
 
 import Routes from './routes.js';
 

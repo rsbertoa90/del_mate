@@ -50,7 +50,7 @@ class OrderController extends Controller
     {
         
             
-        
+            Cache::forget('orders');
             Queue::push(new SaveNewOrder($request->all()));
 
             return;

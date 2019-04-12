@@ -17,7 +17,7 @@
         </div>
          
         <div class="row">
-            <label class="col-4 quiero">Quiero</label>
+            <label class="col-4 quiero"> <fa-icon icon="shopping-cart"></fa-icon> </label>
             <input type="number" min="0" class="form-control col-7 quiero-input " v-model="product.units">
         </div>
       
@@ -68,7 +68,7 @@ export default {
     }
 
 .quiero{
-    font-size:1.3rem;
+    font-size:2rem;
     font-weight: bold;
 }
 

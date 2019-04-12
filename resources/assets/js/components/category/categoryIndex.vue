@@ -29,7 +29,7 @@
 
 
 <script>
-import productCard from './productcard.vue';
+import productCard from './product/card.vue';
 export default {
     components:{productCard},
     metaInfo(){

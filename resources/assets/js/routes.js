@@ -54,6 +54,7 @@ const Login = () => import('./components/login/Login.vue');
 
 const Home = () =>  import('./components/home/Home.vue') ; 
 const Cotizer = () => import('./components/cotizer/Cotizer.vue');
+const ShoppingCart = () => import('./components/shoppingCart/ShoppingCart.vue');
 
 const Admin = () => import('./components/admin/Admin.vue');
 const Orders = () => import('./components/admin/Orders.vue'); 
@@ -79,12 +80,14 @@ const router = new VueRouter({
         },
         {
             path:'/admin/pedidos',
+            /* alias:'/admin/pedidos', */
             name:'orders',
             component:Orders,
             beforeEnter:guardAdmin
         },
         {
             path:'/admin/metadata',
+            /* alias: '/admin/metadata', */
             name:'meta',
             component:Metadata,
             beforeEnter:guardAdmin
@@ -102,17 +105,23 @@ const router = new VueRouter({
             component: Cotizer
         },
         {
+            path:'/carrito',
+            name:'carrito',
+            component: ShoppingCart
+        },
+        {
             path:'/:category_slug',
-            name:'category',
             component: Category,
             children:[
                 {
                     path: '',
-                    component: CategoryIndex
+                    component: CategoryIndex,
+                    name:'category'
                 },
                 {
                     path:':product_slug',
-                    component:Product
+                    component:Product,
+                    name:'product'
                 }
             ]
             

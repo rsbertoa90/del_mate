@@ -47,8 +47,10 @@ export default {
             let res = null;
              this.categories.forEach(c => {
                  let p = c.products.find(pr => {
-                     return pr.slug.trim().toLowerCase() == '/'+vm.$route.params.product_slug.trim().toLowerCase(); 
-                    return resp;
+                     if(pr.slug){
+                         return pr.slug.trim().toLowerCase() == '/'+vm.$route.params.product_slug.trim().toLowerCase(); 
+                     }
+                   
                  });
                  if (p){
                      res = p;

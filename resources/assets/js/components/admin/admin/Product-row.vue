@@ -30,8 +30,7 @@
                     @change="saveChange(product,'name')" class="form-control"></textarea>
             <textarea  placeholder="descripcion" rows="2" type="text" v-model.lazy="product.description" 
                     @change="saveChange(product,'description')" class="form-control"></textarea>
-            <textarea  placeholder="URL" rows="1" type="text" v-model.lazy="product.slug" 
-                    @change="saveSlug(product,'slug')" class="form-control"></textarea>
+            
         </td>
         <td>
             <div class="row w-100 d-flex align-items-center">
@@ -46,10 +45,11 @@
         <td class="d-flex flex-column justify-content-center align-items-center p-0">
             <input class="form-control" type="checkbox" v-model="product.selected">
             <button @click.prevent="deleteProduct(product)" class="btn btn-sm btn-outline-danger m-1">
-                <i class="fa fa-trash"></i>
+                <fa-icon icon="trash"></fa-icon>
             </button>
             <button @click.prevent="togglePause(product)" class="btn btn-sm m-1" :class="{'btn-info' : !product.paused, 'btn-success': product.paused}">
-                <i :class="{'fa fa-pause-circle' : !product.paused , 'fa fa-play' : product.paused}"></i>
+                <fa-icon v-if="!product.paused"  icon='pause-circle' ></fa-icon>
+                <fa-icon v-if="product.paused"  icon='play' ></fa-icon>
             </button>
             <button @click.prevent="toggleOffer(product)" class="btn btn-sm m-1" :class="{'btn-secondary' : !product.offer, 'btn-info': product.offer}">
                 Oferta
@@ -72,10 +72,7 @@ export default {
         showModal:false
     }},
     methods:{
-         saveSlug(){
-            this.product.slug  = this.product.slug.replace(/\s+/g, '-').toLowerCase().trim();
-                this.saveChange(this.product,'slug');
-        },
+        
 
             refresh(){
                 this.$emit('refresh');

@@ -1,14 +1,14 @@
 webpackJsonp([8],{
 
-/***/ 101:
+/***/ 122:
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 var normalizeComponent = __webpack_require__(1)
 /* script */
-var __vue_script__ = __webpack_require__(179)
+var __vue_script__ = __webpack_require__(222)
 /* template */
-var __vue_template__ = __webpack_require__(180)
+var __vue_template__ = __webpack_require__(223)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -48,7 +48,7 @@ module.exports = Component.exports
 
 /***/ }),
 
-/***/ 179:
+/***/ 222:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -91,8 +91,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             var res = null;
             this.categories.forEach(function (c) {
                 var p = c.products.find(function (pr) {
-                    return pr.slug.trim().toLowerCase() == '/' + vm.$route.params.product_slug.trim().toLowerCase();
-                    return resp;
+                    if (pr.slug) {
+                        return pr.slug.trim().toLowerCase() == '/' + vm.$route.params.product_slug.trim().toLowerCase();
+                    }
                 });
                 if (p) {
                     res = p;
@@ -107,7 +108,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /***/ }),
 
-/***/ 180:
+/***/ 223:
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {

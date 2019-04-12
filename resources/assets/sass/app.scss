@@ -16,6 +16,7 @@
 @import "~animate.css/source/_base.css";
 @import "~animate.css/source/bouncing_entrances/bounceIn.css";
 @import "~animate.css/source/fading_entrances/fadeIn.css";
+@import "~animate.css/source/sliding_entrances/slideInLeft.css";
 @import "~animate.css/source/fading_exits/fadeOut.css";
 /* @import "~animate.css/animate.min.css"; */
 
@@ -35,7 +36,16 @@
 .bg-fucsia{
   background-color: #ff0aaf;
 }
-
+.border-fucsia{
+  border:1px solid #ff0aaf ;
+}
 .fucsia{
   color:#ff0aaf
+}
+
+a{
+  color:#000;
+  &:hover{
+    color:#000;
+  }
 }

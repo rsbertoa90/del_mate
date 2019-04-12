@@ -9,7 +9,7 @@
                
                 <div  class="bg-success p-1">
                     <div class="bg-white d-flex justify-content-center p-1">
-                        <router-link to="/terminar-pedido" >  Terminar pedido </router-link>
+                        <router-link to="/carrito" >  Terminar pedido </router-link>
                     </div>
                 </div>
             </div>    

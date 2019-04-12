@@ -10,9 +10,13 @@ export const store = new Vuex.Store({
         config: null,
         states: [],
         categories:[],
-        meta:[]
+        meta:[],
+        searchTerm:''
     },
     getters: {
+        getSearchTerm(store){
+            return store.searchTerm;
+        },
         getMeta(store){
             return store.meta;
         },
@@ -45,7 +49,7 @@ export const store = new Vuex.Store({
             let res = [];
             store.categories.forEach(cat => {
                 let add = cat.products.filter(p => {
-                    return p.offer;
+                    return p.offer && !p.paused;
                 });
                 res = res.concat(add);
             });
@@ -56,11 +60,8 @@ export const store = new Vuex.Store({
             store.categories.forEach(function (category) {
                 category.products.forEach(function (product) {
                     if (product.units > 0) {
-                        if (product.units < product.pck_units) {
                             tot += product.price * product.units;
-                        } else {
-                            tot += product.pck_price * product.units
-                        }
+                        
                     }
                 });
             });
@@ -87,6 +88,7 @@ export const store = new Vuex.Store({
         
     },
     mutations: {
+        
         setMeta(state, payload) {
             state.meta = payload;
 
@@ -104,10 +106,15 @@ export const store = new Vuex.Store({
         setCategories(state, payload) {
             state.categories = payload
         },
+        setSearchTerm(state, payload) {
+            state.searchTerm = payload
+        },
 
     },
     actions: {
-
+        changeSearchTerm : ({commit},payload) => {
+            commit('setSearchTerm',payload);
+        },
         fetchUser: ({
             commit
         }, payload) => {

@@ -1,18 +1,20 @@
 <template>
-    <div>
-        <appFrame></appFrame>
+    <div class="app-container">
+       
         <header>
-            <app-nav></app-nav>
+    
+            <app-top-header></app-top-header>
+           
         </header>    
-        <div class="row">
-            <span class="back-arrow" @click="$router.go(-1)">
-                <i class="fas fa-chevron-left"></i>
-            </span>
-        </div>
+       
         <div class="py-4">
             <transition enter-active-class="animated fadeIn fast faster ">
-                <router-view></router-view>
+                <keep-alive include="carrito">
+                    <router-view></router-view>
+                </keep-alive>
             </transition>
+            <div style="width:100vw; height: 100px"></div>
+            <app-footer></app-footer>
         </div>
          <whatsappBtn v-if="!user || user.role_id > 2 "></whatsappBtn>
          <total-bouncer :total="total" v-if="total"></total-bouncer>
@@ -20,13 +22,12 @@
 </template>
 
 <script>
-
+import appTopHeader from './layout/header.vue'
 import totalBouncer from './app/total-bouncer.vue'
 import whatsappBtn from './layout/whatsapp.vue';
-import appFrame from './layout/frame.vue';
-import appNav from './layout/navbar.vue';
+import AppFooter from './layout/footer.vue';
 export default {
-    components:{appFrame,appNav,whatsappBtn,totalBouncer,},
+    components:{AppFooter,whatsappBtn,totalBouncer,'app-top-header':appTopHeader},
     computed:{
         user(){
             return this.$store.getters.getUser;
@@ -39,6 +40,15 @@ export default {
 </script>}
 
 <style lang="scss" scoped>
+    .app-container{
+       width:98.5vw;
+       padding:5%;
+       padding-bottom: 0;
+       margin-bottom: 0;
+       border:1px solid  #ff2080;
+       overflow: hidden;
+
+    }
     .back-arrow{
         color:blue;
         margin-left:10%;

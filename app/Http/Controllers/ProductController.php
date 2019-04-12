@@ -71,7 +71,7 @@ class ProductController extends Controller
     {
         $this->forgetCaches();
 
-      
+        
        $product = Product::create($request->except('_token'));
        $product = Product::with('category')->find($product->id);
        
