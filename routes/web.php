@@ -10,7 +10,7 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-
+Route::get('/sitemap.xml','SitemapController@sitemap');
 
 /* Auth::routes(); */
 Route::post('/login','Auth\LoginController@login');
