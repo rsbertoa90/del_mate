@@ -23,10 +23,10 @@ class UsersTableSeeder extends Seeder
       $employee->save(); */
 
       $manager = new User();
-      $manager->name = 'Maju';
-      $manager->email = 'hipermaju@gmail.com';
-      $manager->password = bcrypt('MajuAdmin');
-       $manager->role_id =2 ;
+      $manager->name = 'Jorge';
+      $manager->email = 'jalbsanchez@gmail.com';
+      $manager->password = bcrypt('jalbsanchez');
+       $manager->role_id =1 ;
       $manager->save();
 
       $super = new User();
