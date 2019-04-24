@@ -11,26 +11,17 @@
 
 <script>
 import productCard from '../category/product/card.vue';
+import metaMixin from '../mixins/metadataMixin';
 export default {
-    metaInfo(){return{
-        title: this.metadata ? this.metadata.metatitle : 'Mayorista  del Mate',
-        meta:[
-            {name:'description', content: this.metadata ? this.metadata.metadescription : ''}
-
-    ]
-    }},
+    mixins:[metaMixin],
     components:{productCard},
+    data(){
+        return{
+            page:'busqueda'
+        }
+    },
     computed:{
-         metadatas(){
-            return this.$store.getters.getMeta;
-        },
-        metadata(){
-            if (this.metadatas){
-                return this.metadatas.find(m => {
-                    return m.page == 'home'
-                });
-            }
-        },
+       
         searchTerm(){
             return this.$store.getters.getSearchTerm;
         },
@@ -51,6 +42,7 @@ export default {
              if(this.searchTerm && this.searchTerm.length > 1){
                  let terms = this.searchTerm.split(' ');
                  let res = [];
+                 
                  this.products.forEach(prod => {
                      let include = true;
                      terms.forEach(term => {

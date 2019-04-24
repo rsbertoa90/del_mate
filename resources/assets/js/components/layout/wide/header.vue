@@ -16,7 +16,7 @@
             11 4970 6452
         </div>
         
-        <div class="col-1 flex pos-relative mr-1 cart">
+        <div class="col-1 flex pos-relative mr-1 cart" v-if="config && !config.hide_prices">
             <router-link to="/carrito">
                 <fa-icon icon="shopping-cart"></fa-icon>
                 <span class="n-items" v-if="list && list.length" > {{list.length}}  </span>
@@ -52,6 +52,9 @@ export default {
         },
         list(){
             return this.$store.getters.getList;
+        },
+        config(){
+            return this.$store.getters.getconfig;
         }
     }
 }

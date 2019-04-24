@@ -5,14 +5,14 @@
                 <fa-icon icon="home"></fa-icon> Home 
             </router-link>
         </li>
-        <li class="nav-item text-white" :class="{'focus':path=='/cotizador'}">
+        <li v-if="config && !config.hide_prices" class="nav-item text-white" :class="{'focus':path=='/cotizador'}">
             <router-link class="nav-link " to="/cotizador">
                 <fa-icon icon="shopping-cart"></fa-icon> Cotizador 
             </router-link>
         </li>
 
-        <li class="nav-item text-white">
-                <a class="nav-link " target="_blank" href="/mayorista-del-mate.pdf" >
+        <li class="nav-item text-white" v-if="config && !config.hide_prices">
+            <a class="nav-link " target="_blank" href="/mayorista-del-mate.pdf" >
                 <fa-icon icon="download"></fa-icon> Lista de precios
             </a> 
         </li>
@@ -62,6 +62,9 @@ export default {
         },
         path(){
             return this.$route.path;
+        },
+        config(){
+            return this.$store.getters.getConfig;
         }
     },
    

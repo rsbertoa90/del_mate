@@ -14,7 +14,7 @@
                 <fa-icon icon="bars" @click="showMenu = true"></fa-icon>
             </div>
             <div class="p-2 pos-relative mr-1">
-                <router-link to="/carrito" class="text-black" style="color:#000">
+                <router-link v-if="config && ! config.hide_prices" to="/carrito" class="text-black" style="color:#000">
                     <fa-icon icon="shopping-cart"></fa-icon>
                     <span class="n-items" v-if="list && list.length"> {{list.length}} </span>
                 </router-link>
@@ -53,6 +53,9 @@ export default {
         },
         list(){
             return this.$store.getters.getList;
+        },
+        config(){
+            return this.$store.getters.getConfig;
         }
     }
 }

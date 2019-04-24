@@ -32,21 +32,16 @@
  import { mapGetters } from 'vuex';
     import cotizerProductcard from '../category/product/card.vue';
     import codeSelector from './code-selector.vue';
-   
+   import metaMixin from '../mixins/metadataMixin';
+  
     import tutorial from './tutorial.vue'
     export default {
+        mixins:[metaMixin],
         components : {tutorial,cotizerProductcard,codeSelector},
-        metaInfo(){
-            return {
-                title: this.meta ? this.meta.metatitle : 'Mayorista del Mate',
-                meta:[
-                    {name:'description',content:this.meta ? this.meta.metadescription : ''}
-                ]
-
-            }
-        },
+       
         data(){
             return {
+                page:'cotizador',
                 selector:{
                     code:'',
                     name:'',
@@ -85,15 +80,8 @@
                categories : 'getCategories',
                user : 'getUser',
                configs:'getConfig',
-               allmeta: 'getMeta'
-            }),
-            meta(){
-                if (this.allmeta) return this.allmeta.find(m => {
-                    return m.page == 'cotizador';
-                });
-            },
-
             
+            }),
        
         },
 

@@ -9,12 +9,12 @@
                                 <fa-icon icon="home"></fa-icon> Home 
                             </router-link>
                         </li>
-                        <li class="nav-item text-white">
+                        <li class="nav-item text-white" v-if="config && !config.hide_prices">
                             <router-link class="nav-link text-white" to="/cotizador">
                                 <fa-icon icon="shopping-cart"></fa-icon> Cotizador 
                             </router-link>
                         </li>
-                        <li class="nav-item text-white">
+                        <li class="nav-item text-white" v-if="config && !config.hide_prices">
                              <a class="nav-link text-white" target="_blank" href="/mayorista-del-mate.pdf" >
                                 <fa-icon icon="download"></fa-icon> Lista de precios
                             </a> 
@@ -61,6 +61,9 @@ export default {
   computed:{
       user(){
           return this.$store.getters.getUser;
+      },
+      config(){
+          return this.$store.getters.getConfig;
       }
   },
   methods:{

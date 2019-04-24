@@ -10,7 +10,7 @@
                 </div>
             </div>
         </router-link>
-         <shop-button :product="product"></shop-button>
+         <shop-button v-if="config && !config.hide_prices" :product="product"></shop-button>
     </div>    
 </template>
 
@@ -33,7 +33,7 @@ export default {
             let category = cats.find(c => {
                 return c.id == this.product.category_id;
             });
-           console.log(this.product);
+           
             let url = category.slug + '/' + this.product.slug;
             url = url.replace('//','/');
             return url;

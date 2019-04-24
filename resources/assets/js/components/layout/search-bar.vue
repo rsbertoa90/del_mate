@@ -1,6 +1,6 @@
 <template>
     <div class="d-flex">
-        <input v-model.lazy="searchTerm" ref="field" type="text" class="form-control border-fucsia" placeholder="BUSCAR" >
+        <input @keyup.enter="search" v-model.lazy="searchTerm" ref="field" type="text" class="form-control border-fucsia" placeholder="BUSCAR" >
         <router-link class="btn bg-white fucsia border-fucsia" to="/busqueda">
             <fa-icon icon="search" class="mb-1"></fa-icon>
         </router-link>
@@ -21,8 +21,14 @@ export default {
     },
     watch:{
         searchTerm(){
-            this.$store.dispatch('changeSearchTerm',this.searchTerm);
+          this.$store.dispatch('changeSearchTerm',this.searchTerm);
         }
+    },
+    methods:{
+        search(){
+          this.$router.push('/busqueda');
+        },
+
     },
     mounted(){
         this.$refs.field.focus();

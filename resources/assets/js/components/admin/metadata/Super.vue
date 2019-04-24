@@ -5,9 +5,9 @@
             <a href="/admin/lista-de-precios" class="btn btn-outline-info">  
                 Refrescar Lista de Precios
             </a>
-            <a href="/super/failed-jobs" class="btn btn-outline-danger">  
+            <!-- <a href="/super/failed-jobs" class="btn btn-outline-danger">  
                 Failed jobs
-            </a>
+            </a> -->
         </div>
         <div class="col-12 row" v-if="configs">
             <div class="col-12">
@@ -18,7 +18,19 @@
                 compra minima envios: 
                 <input type="number" @change="updateconfig('minbuy_ship')" v-model.lazy="configs.minbuy_ship">
             </div>
+            <div class="col-12" v-if="configs">
+                
+                <button v-if="configs.hide_prices" class="btn btn-outline-info" @click="toggle_hide_prices">
+                    Mostrar precios
+                </button>
+                
+                <button v-if="!configs.hide_prices" class="btn btn-outline-danger" @click="toggle_hide_prices">
+                    Ocultar precios
+                </button>
+                
+            </div>
         </div>
+
 
         <div class="col-12 row p-4">
             <h3 class="col-12">Metadatas</h3>
@@ -73,6 +85,15 @@ export default {
         }
     },
     methods:{
+        toggle_hide_prices(){
+            this.configs.hide_prices = !this.configs.hide_prices;
+            let numeric = this.configs.hide_prices ? 1 : 0;
+            let data = {
+                field : 'hide_prices',
+                value : numeric,
+            }
+           this.$http.put('/admin/config',data);
+        },
         updateconfig(field)
         {
             let data = {

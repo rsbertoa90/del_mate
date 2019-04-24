@@ -15,26 +15,16 @@
 import homeBanners from './banners.vue';
 import homeInfo from './info.vue';
 import  homeOffers from './offers.vue';
+import metaMixin from '../mixins/metadataMixin';
 export default {
-    components:{homeOffers,homeBanners,homeInfo},
-    metaInfo(){return{
-        title: this.metadata ? this.metadata.metatitle : 'Mayorista  del Mate',
-        meta:[
-            {name:'description', content: this.metadata ? this.metadata.metadescription : ''}
- 
- ]
+    mixins:[metaMixin],
+    data(){return{
+        page:'home'
     }},
+    components:{homeOffers,homeBanners,homeInfo},
+   
     computed:{
-        metadatas(){
-            return this.$store.getters.getMeta;
-        },
-        metadata(){
-            if (this.metadatas){
-                return this.metadatas.find(m => {
-                    return m.page == 'home'
-                });
-            }
-        },
+
         categories(){
             return this.$store.getters.getNotPaused;
         }
