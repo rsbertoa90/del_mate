@@ -38,8 +38,7 @@
                     <div  class="col-6 d-flex flex-column">
                         <div class="d-flex align-items-center ">
                              <label class="text-info font-weight-bold">Filtrar</label>
-                            <input type="checkbox" class="form-control" v-model="selector.checked" @change="checkSelect">
-                            <select v-if="orderBy == 'category.name'"  class="form-control col-4"  v-model="selector.id">
+                             <select v-if="orderBy == 'category.name'"  class="form-control col-4"  v-model="selector.id">
                                 <option value="all"> Todo</option>
                                 <option 
                                         v-for="category in categories" :key="category.id" :value="category.id"> 
@@ -210,7 +209,7 @@ import paginator from './admin/paginator.vue';
         methods : {
             
             resetFilters(){
-                this.resetCheckboxes();
+            
                 this.selectedPage = 1;
                 this.searchMode=false;
                 this.searchTerm='';
@@ -230,7 +229,10 @@ import paginator from './admin/paginator.vue';
             searchComparision(term,prod){
                   let prodName = prod.name.toLowerCase().trim();
                   term = term.toLowerCase().trim();
-                  let categoryName = prod.category.name.toLowerCase().trim();
+                  let category = this.categories.find(c=> {
+                      return c.id == prod.category_id;
+                  });
+                  let categoryName = category.name.toLowerCase().trim();
                   
                   let code = prod.code.toLowerCase().trim();
 
@@ -247,14 +249,16 @@ import paginator from './admin/paginator.vue';
                 let res = [];
                 this.products.forEach(prod => {
                     let include = true;
-                    terms.forEach(term => {
-                        if (include && !this.searchComparision(term,prod))
-                        {
-                            include = false;
+                    if (prod){
+                        terms.forEach(term => {
+                            if (include && !this.searchComparision(term,prod))
+                            {
+                                include = false;
+                            }
+                        });
+                        if (include){
+                            res.push(prod);
                         }
-                    });
-                    if (include){
-                        res.push(prod);
                     }
                 });
                
@@ -283,34 +287,7 @@ import paginator from './admin/paginator.vue';
                     }
                 });
             },
-            checkSelect(){
-                if (this.selector.id == 'all')
-                {
-                    this.products.forEach(prod => {
-                        if (prod.selected == undefined)
-                        {
-                            Vue.set(prod,'selected',true);
-                        }
-                        prod.selected = this.selector.checked;
-                    });
-                }else{
-                    if (this.orderBy == 'category.name')
-                    {
-                        this.products.forEach(prod => {
-                            if (prod.category.id == this.selector.id)
-                            {
-                                if (prod.selected == undefined)
-                                {
-                                    Vue.set(prod,'selected',true);
-                                }
-                                prod.selected = this.selector.checked;
-                            }
-                        });
-                    } 
-                }
-
-
-            },
+            
            
           
          
