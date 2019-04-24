@@ -12,7 +12,7 @@
         </li>
 
         <li class="nav-item text-white">
-                <a class="nav-link " target="_blank" href="/MAJU-lista-de-precios.pdf" >
+                <a class="nav-link " target="_blank" href="/mayorista-del-mate.pdf" >
                 <fa-icon icon="download"></fa-icon> Lista de precios
             </a> 
         </li>
