@@ -59,6 +59,11 @@ export default {
 
         }
     },
+    computed:{
+        user(){
+            return this.$store.getters.getUser;
+        }
+    },
     methods:{
         send()
         {
@@ -71,6 +76,14 @@ export default {
                     }
                     
                 });
+        }
+    },
+    watch:{
+        user(){
+            if (this.user && this.user.role_id < 3)
+            {
+                this.$router.push('/admin');
+            }
         }
     }
     
