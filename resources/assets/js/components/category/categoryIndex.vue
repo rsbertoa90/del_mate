@@ -16,9 +16,9 @@
           </div>
           <br>
           <div class="row">
-                    <div v-for="product in category.products" :key="product.id" class=" col-12 col-lg-3">
+                    <div v-for="product in category.products" :key="product.id" class="mt-4 col-12 col-lg-3 border-grey">
                      
-                            <productCard :product="product" class="mt-4"></productCard>
+                            <productCard :product="product" class=" "></productCard>
                 
                     </div>
           </div>

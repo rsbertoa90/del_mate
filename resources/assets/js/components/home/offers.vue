@@ -1,6 +1,6 @@
 <template>
     <div class="row mt-4 d-flex align-items-stretch">
-        <div v-for="product in offers" :key="product.id" class="col-12 col-lg-3 border-grey">
+        <div v-for="product in offers" :key="product.id" class="col-12 col-lg-3 border-grey mt-2">
             <productCard :product="product"></productCard>
         </div>
     </div>
