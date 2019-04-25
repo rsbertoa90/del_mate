@@ -15,10 +15,10 @@
             </div>
         </div>
         <div class="info-item">
-            <fa-icon icon="dollar-sign" class="icon"></fa-icon>
+            <fa-icon icon="user-check" class="icon"></fa-icon>
             <div class="d-flex flex-column ml-2">
-                <span> <b>PAGO CONTRAREEMBOLSO</b> </span>
-                <span>Paga al recibir tus productos</span>
+                <span> <b>ATENCION PERSONALIZADA</b> </span>
+                <span>Por whatsapp, lunes a sabados de 9hs a 18hs </span>
             </div>
         </div>
     </div>

@@ -34,11 +34,15 @@ import {
     faBuilding,
     faHome,
     faArrowDown,
-    faTimes
+    faTimes,
+    faUser,
+    faUserCheck
 } from '@fortawesome/free-solid-svg-icons'
 
 
 library.add(faPauseCircle,
+            faUser,
+            faUserCheck,
             faPlus,
             faMinus,
             faHeart,
