@@ -66,6 +66,10 @@ const Product = () => import ('./components/category/product/Product.vue');
 
 
 const router = new VueRouter({
+    scrollBehavior(to, from, savedPosition) {
+        // page scroll to top for all route navigations
+        return { x: 0, y: 0 }
+    },
     mode:'history',
     routes:[
         {

@@ -20,6 +20,7 @@
                 </router-link>
             </div>
         </div>
+         <div class="header-line"></div>
         <transition enter-active-class="animated slideInLeft fast faster">
             <div class="col-12" v-if="showSearch">
                 <search-bar></search-bar>
@@ -31,7 +32,7 @@
                 
             </div>
         </transition>
-        
+       
     </div>
 </template>
 
@@ -62,6 +63,11 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.header-line{
+    width:100vw;
+    height: 2px;
+    background-color:#868686;
+}
 img{
     width: 100%;
 }

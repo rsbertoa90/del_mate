@@ -29,7 +29,7 @@
                          <!-- Categorias si no se muestran precios --ergo,no cotizador ni lista de precios -->
                        <li v-if="config && config.hide_prices" class="nav-item text-white" :class="{'focus':path=='/cotizador'}"
                             v-for="category in categories" :key=category.name>
-                            <router-link class="nav-link " :to="category.slug">
+                            <router-link class="nav-link text-white " :to="category.slug">
                                 <fa-icon icon="shopping-cart"></fa-icon> {{category.name |ucFirst}} 
                             </router-link>
                         </li>
