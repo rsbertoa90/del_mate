@@ -16,7 +16,7 @@
     <!-- iOS Safari -->
     <meta name="apple-mobile-web-app-status-bar-style" content="#ff0aaf">
 
-    <title>Mayorista del Mate</title>
+    
 
 
    <script type="text/javascript">
@@ -32,12 +32,8 @@
             s.parentNode.insertBefore(wf, s);
         })();
     </script>
-{{-- 
-    @if ($meta =  App\Metadata::findOrCreate('home'))
-        <title>{{$meta->metatitle }}</title>
-        <meta name="description" content="{{$meta->metadescription }}">
-    @endif --}}
-    
+
+    <meta name="google-site-verification" content="LNL6MBBDG8kASClJF0puYEg8UxzDakhC2elazpNVL7E" />
     <!-- Scripts -->
     <script src="{{ mix('/js/manifest.js') }}" defer></script>
     <script src="{{ mix('/js/vendor.js') }}" defer></script>
