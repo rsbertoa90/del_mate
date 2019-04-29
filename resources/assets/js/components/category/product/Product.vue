@@ -1,11 +1,27 @@
 <template>
-    <dir v-if="product">
-        <h1>{{product.name}}</h1>
-    </dir>
+    <div v-if="product" class="d-flex flex-column justify-content-center text-center w-100">
+        <h1 class="mb-4">{{product.name | ucFirst}}</h1>
+        <div class="row">
+            <div class="col-12 offset-lg-2 col-lg-4">
+
+                <v-lazy-image v-if="product.images[0]" :src="product.images[0].url" :alt="product.name">
+                </v-lazy-image>
+                
+                <v-lazy-image v-else src="/storage/images/app/no-image.png" :alt="product.name">
+                </v-lazy-image>
+            
+            </div>
+            <div class="col-12  col-lg-4 mt-4 mt-lg-0">
+                <info></info>
+            </div>
+        </div>
+    </div>
 </template>
 
 <script>
+import info from './info.vue';
 export default {
+    components:{info},
     metaInfo(){
         return{
             title:this.metatitle,
@@ -48,6 +64,8 @@ export default {
              this.categories.forEach(c => {
                  let p = c.products.find(pr => {
                      if(pr.slug){
+                         pr.slug = '/'+pr.slug;
+                         pr.slug = pr.slug.replace('//','/');
                          return pr.slug.trim().toLowerCase() == '/'+vm.$route.params.product_slug.trim().toLowerCase(); 
                      }
                    
@@ -65,3 +83,9 @@ export default {
 }
 </script>
 
+<style scoped>
+    img{
+        width:100%;
+        border:1px solid #868686;
+    }
+</style>

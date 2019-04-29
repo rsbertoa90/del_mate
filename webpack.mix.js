@@ -1,5 +1,7 @@
+
 let mix = require('laravel-mix');
 let webpack = require('webpack');
+
 require('laravel-mix-purgecss');
 
 /*

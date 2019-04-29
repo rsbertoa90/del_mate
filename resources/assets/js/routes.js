@@ -50,19 +50,19 @@ import "core-js/modules/es6.array.iterator";
 
 
 
-const Login = () => import('./components/login/Login.vue');
+import Login from './components/login/Login.vue';
 
-const Home = () =>  import('./components/home/Home.vue') ; 
-const Cotizer = () => import('./components/cotizer/Cotizer.vue');
-const ShoppingCart = () => import('./components/shoppingCart/ShoppingCart.vue');
-const SearchResults = () => import ('./components/search-results/SearchResults.vue')
+import Home  from'./components/home/Home.vue' ; 
+import Cotizer from'./components/cotizer/Cotizer.vue';
+import ShoppingCart  from'./components/shoppingCart/ShoppingCart.vue';
+import SearchResults  from './components/search-results/SearchResults.vue'
 
-const Admin = () => import('./components/admin/Admin.vue');
-const Orders = () => import('./components/admin/Orders.vue'); 
-const Metadata = () => import('./components/admin/metadata/Super.vue');
-const Category = () => import ('./components/category/Category.vue');
-const CategoryIndex = () => import ('./components/category/categoryIndex.vue');
-const Product = () => import ('./components/category/product/Product.vue');
+import Admin  from'./components/admin/Admin.vue';
+import Orders  from'./components/admin/Orders.vue'; 
+import Metadata  from'./components/admin/metadata/Super.vue';
+import Category  from './components/category/Category.vue';
+import CategoryIndex  from './components/category/categoryIndex.vue';
+import Product  from './components/category/product/Product.vue';
 
 
 const router = new VueRouter({
