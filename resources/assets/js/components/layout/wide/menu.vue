@@ -1,5 +1,7 @@
 <template>
-    <ul >
+<div>
+
+    <ul class="row p-0 m-0">
         <li class="nav-item" :class="{'focus':path=='/'}">
             <router-link class="nav-link " to="/">
                 <fa-icon icon="home"></fa-icon> Home 
@@ -32,7 +34,8 @@
                 </router-link>
             </li>
        
-        
+    </ul>
+    <ul class="row p-0 m-0" v-if="user && user.role_id<3">
         <!-- Admin -->
         <li class="nav-item text-white" v-if="user && user.role_id < 3">
             <router-link class="nav-link " to="/admin" :class="{'focus':path=='/admin'}">
@@ -62,6 +65,7 @@
 
     </ul>
                
+</div>
 </template>
 
 <script>

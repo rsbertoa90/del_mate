@@ -1,7 +1,7 @@
 <template>
     <div class="d-flex flex-column align-items-center product-card  justify-content-between h-100" v-if="product">
-        <h2 class="text-center title">{{product.name | uc}}</h2>
         <router-link :to="productUrl">
+            <h2 class="text-center title justify-content-center">{{product.name | uc}}</h2>
             <div class="image-container">
                 <v-lazy-image :src="image.url"></v-lazy-image>
                 <div class="price-badge" v-if="config && !config.hide_prices">

@@ -24,7 +24,7 @@
                             @refresh="refresh()" @resetCheckboxes="resetCheckboxes()"></change-prices>
             </div> -->
             <hr class="w-100">
-            
+            <!-- 
             <div class="col-12 row">
                     <div class="col-6 row">
                         <label class="text-info font-weight-bold col-4">Ordenar por</label>
@@ -48,7 +48,7 @@
                             </select>
                         </div>
                     </div>
-                </div>
+                </div> -->
                 <div class="col-12 row mt-3 mb-3 ml-2">
                     <input v-model.lazy="searchTerm" placeholder="BUSCAR" @keyup.enter="search" class="form-control col-4">
                     <button class="btn btn-outline-success ml-2" @click="search">Buscar</button>
