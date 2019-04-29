@@ -18,7 +18,7 @@
         </li>
         <li class="nav-item text-white">
             <a class="nav-link " target="_blank" rel="noreferrer"
-                href="https://drive.google.com/file/d/1PRSqHX-70Eh7uAqOaF8xV-CAZ3BhqPL9/view">
+                href="https://drive.google.com/file/d/1n1larl_4GY1JuQzgrMX7kFym0BEgvkHL/view">
                     <fa-icon icon="download"></fa-icon> Catalogo digital
             </a> 
         </li>

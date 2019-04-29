@@ -46,17 +46,26 @@
 
     @media(max-width:660px)
     {
+
         .info-item{
+            background-color: #09879f;
+            margin-top:15px;
             width: 100%;
             max-width: 100%;
              justify-content: start; 
-             margin-top:15px;
+            /*  margin-top:15px; */
              margin-left:15px;
+             padding:10px;
+             border:1px solid #868686;
+             box-shadow: #868686 1px 2px;
         }
         .info-row{
+            margin:-15px 0 0 0 ;
+            margin-left:-5%;
             align-items:flex-start;
             flex-direction: column;
             justify-content: start; 
+           background-color:#00000000;
         }
     }
 

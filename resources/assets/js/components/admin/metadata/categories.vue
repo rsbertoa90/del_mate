@@ -85,7 +85,7 @@ export default {
             if (ext == 'png' || ext == 'jpg' || ext == 'jpeg' || ext == 'gif' || ext == webp){
                 fileUploadFormData.append('image', e.target.files[0]);
                 fileUploadFormData.append('id', this.selected.id);
-                this.$http.post('/super/category/image', fileUploadFormData)
+                this.$http.post('/admin/categories/image', fileUploadFormData)
                         .then(response => {
                            window.location.replace('/super');
                         });

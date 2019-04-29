@@ -7,9 +7,9 @@
     
       
         
-          <div style="text-align: center">
-              <v-lazy-image v-if="category.image" :src="category.image"></v-lazy-image>
-              <h1 v-if="!category.image"> {{category.name |uc}} </h1>
+          <div>
+              <mobile-head v-if="$mq!='lg'" :category="category"></mobile-head>
+              <wide-head v-else :category="category"></wide-head>
           </div>
           <div v-if="category.description" class="text-center mt-4">
               <p> {{category.description}} </p>
@@ -30,9 +30,11 @@
 
 
 <script>
+import mobileHead from './mobile-header.vue';
+import wideHead from './wide-header.vue';
 import productCard from './product/card.vue';
 export default {
-    components:{productCard},
+    components:{productCard,mobileHead,wideHead},
     metaInfo(){
         return{
             title: this.metatitle,

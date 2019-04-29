@@ -21,7 +21,7 @@
 
    <script type="text/javascript">
         WebFontConfig = {
-            google: { families: [ 'Niramit' ] }
+            google: { families: [ 'Noto+Sans' ] }
         };
         (function() {
             var wf = document.createElement('script');
