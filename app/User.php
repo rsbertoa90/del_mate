@@ -2,11 +2,12 @@
 
 namespace App;
 
+
+use Tymon\JWTAuth\Contracts\JWTSubject;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use App\Role;
-
-class User extends Authenticatable
+use App\Order;
+class User extends Authenticatable  implements JWTSubject
 {
     use Notifiable;
 
@@ -28,7 +29,7 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
-    public function role()
+        public function role()
     {
         return $this->belongsTo(Role::class);
     }
@@ -37,4 +38,20 @@ class User extends Authenticatable
     {
         return $this->role->level < 3;
     }
+
+   
+    
+
+      public function getJWTIdentifier()
+    {
+        return $this->getKey();
+    }
+
+   
+    public function getJWTCustomClaims()
+    {
+        return [];
+    }
+
+
 }

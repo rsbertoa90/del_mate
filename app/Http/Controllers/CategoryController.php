@@ -86,7 +86,7 @@ class CategoryController extends Controller
             $category->image = '/storage/'.$path;
             $category->save();
         }
-        return redirect('/admin/metadata');
+        
     }
     
 

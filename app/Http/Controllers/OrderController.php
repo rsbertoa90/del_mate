@@ -45,20 +45,13 @@ class OrderController extends Controller
 
       
     }
-
-    public function userOrder(Request $request)
+  
+    public function create(Request $request)
     {
         
-            
             Cache::forget('orders');
             Queue::push(new SaveNewOrder($request->all()));
-
-            return;
-
-            
-
-      
-            
+            return;            
     }
 
     

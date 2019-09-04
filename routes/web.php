@@ -12,6 +12,11 @@
 */
 Route::get('/sitemap.xml','SitemapController@sitemap');
 
+
+Route::get('/descargar-catalogo-grande','PdfController@redirectCatalogoRaw');
+Route::get('/descargar-catalogo-digital','PdfController@redirectCatalogo');
+
+
 /* Auth::routes(); */
 Route::post('/login','Auth\LoginController@login');
 Route::get('/logout','Auth\LoginController@logout');
@@ -84,7 +89,7 @@ Route::get('/logout','HomeController@logout');
 
 Route::post('/cotizer/send', 'OrderController@userOrder');
 
-Route::get('/descargar-lista-de-precios','PDFController@pricesList');
+Route::get('/descargar-lista-de-precios','PdfController@downloadPricesList');
 
 
 

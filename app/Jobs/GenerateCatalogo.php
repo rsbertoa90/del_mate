@@ -10,10 +10,13 @@ use Illuminate\Foundation\Bus\Dispatchable;
 use App\Category;
 use App\ProductImage;
 use Carbon\Carbon;
+
 use PDF;
 use View;
 use Dompdf\Dompdf;
+use Illuminate\Support\Facades\Cache;
 use Dompdf\Options;
+
 class GenerateCatalogo implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
@@ -29,6 +32,19 @@ class GenerateCatalogo implements ShouldQueue
     {
         //
     }
+     public function imageEmbed($image)
+    {
+       
+
+        // Read image path, convert to base64 encoding
+        $imageData = base64_encode(file_get_contents($image));
+
+        // Format the image SRC:  data:{mime};base64,{data};
+        $src = 'data:'.mime_content_type($image).';base64,'.$imageData;
+
+        // Echo out a sample image
+       return $src;
+    }
 
     /**
      * Execute the job.
@@ -38,27 +54,48 @@ class GenerateCatalogo implements ShouldQueue
     public function handle()
     {
      
+        if( Cache::has('catalogoRaw'))
+        {
+            $url=Cache::get('catalogoRaw');
+            if(file_exists(public_path().$url)){
 
-        $path = public_path().'/MAJU-catalogo.pdf';
-        $today = Carbon::now()->format('d/m/Y');
-        $categories = Category::with('products.images')->whereHas('products', function ($q){
-            $q->orderBy('name')->where('paused',0);
-        })->orderBy('name')->get();
+                unlink(public_path().$url);
+            }
+            Cache::forget('catalogoRaw');
+        }
+        
+        
+      
+       $date = str_slug(Carbon::now());
+        $path= '/catalogoRaw'.$date.'.pdf' ;
+
+        Cache::forever('catalogoRaw',$path);
+
+
+        $categories =Category::with('products.images')
+                    ->with(['products' => function($q){
+                        $q->where('paused',0);
+                    }])
+                    ->whereHas('products' , function($q){
+                $q->where('paused',0)->orderBy('name');
+            })->orderBy('name')->get();
         
         foreach ($categories as  $c) {
             foreach ($c->products as $k=>$p) {
-                if (!isset($p->images[0]))
+                if ($p->paused)
                 {
                     unset($c->products[$k]);
                     
-                }
+                } 
             }
         }
 
 
-        $html = View::make('pdf.Catalogo2',compact('categories','today'))->render();
+        $logo = $this->imageEmbed(public_path('/storage/images/app/logo.png'));
+        $today = Carbon::now()->format('d/m/Y');
+        $html = View::make('pdf.catalogo.Catalogo',compact('categories','today','logo'))->render();
 
-        PDF::loadHTML($html)->save($path); 
+        PDF::loadHTML($html)->save(public_path().$path); 
 
         
     }

@@ -80,8 +80,7 @@ import {
 
 Vue.component(
     'csrf',
-    () => import(
-        /* webpackChunkName: "example-component" */
+    require(
         './components/csrf.vue'
     )
 );

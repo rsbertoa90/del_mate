@@ -93,12 +93,12 @@ class SaveNewOrder implements ShouldQueue
         /* $product = Product::find($p->id); */
 
         if ($p){
-            $price = $p->units >= $p->pck_units ? $p->pck_price : $p->price ;
+           
             OrderProduct::create([
                   'product_id' => $p->id,
                   'order_id'=>$order->id,
                   'units'=>$p->units,
-                  'price'=>$price,
+                  'price'=>$p->price,
                   ]);
         }
       }

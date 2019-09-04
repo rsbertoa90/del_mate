@@ -22,7 +22,7 @@ class ProductController extends Controller
     public function getAll()
     {   
         return Cache::rememberForever('products', function () {
-             return Product::with('category')->with('images')->get();
+             return Product::with('images')->get();
 
         }); 
        
@@ -67,7 +67,7 @@ class ProductController extends Controller
 
     }
 
-    public function save(Request $request)
+    public function create(Request $request)
     {
         $this->forgetCaches();
 
@@ -78,7 +78,7 @@ class ProductController extends Controller
        return;
     }
 
-    public function delete($id)
+    public function destroy($id)
     {
         $this->forgetCaches();
         $product = Product::find($id);
@@ -103,7 +103,7 @@ class ProductController extends Controller
         $pi = ProductImage::find($request->id);
         $pi->delete();
 
-        return redirect('/admin');
+      
 
     }
 
