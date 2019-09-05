@@ -25,7 +25,8 @@ class MetadataController extends Controller
         $pages = ['home',
                   'cotizador',
                   'contacto',
-                  'carrito'
+                  'carrito',
+                  'busqueda'
                 ];
         
         $res = [];
