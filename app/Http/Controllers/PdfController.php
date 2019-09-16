@@ -16,6 +16,7 @@ class PdfController extends Controller
 
       public function dispatchCatalogoJob()
     {
+        
            if( Cache::has('catalogoBg'))
         {
             $url=Cache::get('catalogoBg');
@@ -31,6 +32,8 @@ class PdfController extends Controller
        $date = str_slug(Carbon::now());
         $path= '/catalogoBg'.$date.'.pdf' ;
         Cache::forever('catalogoBg',$path);
+
+       // dd($path);
 
         Queue::push(new GenerateCatalogo($path));
 

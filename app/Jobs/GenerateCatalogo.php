@@ -83,8 +83,9 @@ class GenerateCatalogo implements ShouldQueue
         $logo = $this->imageEmbed(public_path('/storage/images/app/logo.png'));
         $today = Carbon::now()->format('d/m/Y');
         $html = View::make('pdf.catalogo.Catalogo',compact('categories','today','logo'))->render();
-        $path = $this->path;
-        PDF::loadHTML($html)->save(public_path().$path); 
+        $path = public_path().$this->path;
+
+        PDF::loadHTML($html)->save($path); 
 
         
     }
