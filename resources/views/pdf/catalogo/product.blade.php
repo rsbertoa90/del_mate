@@ -20,7 +20,7 @@
                     <br>
                     </div>
                         <div style="margin-top:-16px; margin-left:10px;margin-top:10px;">  <br>
-                            <span style="width:73px ; height:60px; font-size: 1.1rem  ; display:inline "> ${{number_format($product->price,2)}} </span>    
+                            <span style="width:65px ; height:60px; font-size: 1.1rem  ; display:inline "> ${{number_format($product->price,2)}} </span>    
                     </div>
                 
                    

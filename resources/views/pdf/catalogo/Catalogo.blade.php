@@ -29,7 +29,7 @@
                     <div style="width:100%;height:40px;"></div>
                 </tr>
             </table>
-              <table class="table table-bordered " style="width:800px ;" >
+              <table class="table table-bordered " style="width:700px ;" >
 
                   <tbody >
                     @php
