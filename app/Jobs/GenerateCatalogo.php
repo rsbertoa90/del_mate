@@ -21,6 +21,7 @@ class GenerateCatalogo implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
     
+    public $path;
     public $tries = 1;
     public $timeout = 3600;
     /**
@@ -28,9 +29,10 @@ class GenerateCatalogo implements ShouldQueue
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($path)
     {
         //
+        $this->path=$path;
     }
      public function imageEmbed($image)
     {
@@ -54,22 +56,9 @@ class GenerateCatalogo implements ShouldQueue
     public function handle()
     {
      
-        if( Cache::has('catalogoBg'))
-        {
-            $url=Cache::get('catalogoBg');
-            if(file_exists(public_path().$url)){
+     
 
-                unlink(public_path().$url);
-            }
-            Cache::forget('catalogoBg');
-        }
-        
-        
-      
-       $date = str_slug(Carbon::now());
-        $path= '/catalogoBg'.$date.'.pdf' ;
-
-        Cache::forever('catalogoBg',$path);
+       
 
 
         $categories =Category::with('products.images')
@@ -94,7 +83,7 @@ class GenerateCatalogo implements ShouldQueue
         $logo = $this->imageEmbed(public_path('/storage/images/app/logo.png'));
         $today = Carbon::now()->format('d/m/Y');
         $html = View::make('pdf.catalogo.Catalogo',compact('categories','today','logo'))->render();
-
+        $path = $this->path;
         PDF::loadHTML($html)->save(public_path().$path); 
 
         

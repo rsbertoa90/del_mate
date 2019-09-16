@@ -16,8 +16,23 @@ class PdfController extends Controller
 
       public function dispatchCatalogoJob()
     {
+           if( Cache::has('catalogoBg'))
+        {
+            $url=Cache::get('catalogoBg');
+            if(file_exists(public_path().$url)){
+
+                unlink(public_path().$url);
+            }
+            Cache::forget('catalogoBg');
+        }
         
-        Queue::push(new GenerateCatalogo());
+        
+      
+       $date = str_slug(Carbon::now());
+        $path= '/catalogoBg'.$date.'.pdf' ;
+        Cache::forever('catalogoBg',$path);
+
+        Queue::push(new GenerateCatalogo($path));
 
         return;
     }
