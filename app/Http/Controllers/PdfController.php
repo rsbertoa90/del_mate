@@ -72,7 +72,7 @@ class PdfController extends Controller
 
       public function redirectCatalogoRaw()
     {
-        $fileuri = Cache::get('catalogoRaw');
+        $fileuri = Cache::get('catalogoBg');
         
         if ($fileuri)
         {

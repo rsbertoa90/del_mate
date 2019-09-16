@@ -54,22 +54,22 @@ class GenerateCatalogo implements ShouldQueue
     public function handle()
     {
      
-        if( Cache::has('catalogoRaw'))
+        if( Cache::has('catalogoBg'))
         {
-            $url=Cache::get('catalogoRaw');
+            $url=Cache::get('catalogoBg');
             if(file_exists(public_path().$url)){
 
                 unlink(public_path().$url);
             }
-            Cache::forget('catalogoRaw');
+            Cache::forget('catalogoBg');
         }
         
         
       
        $date = str_slug(Carbon::now());
-        $path= '/catalogoRaw'.$date.'.pdf' ;
+        $path= '/catalogoBg'.$date.'.pdf' ;
 
-        Cache::forever('catalogoRaw',$path);
+        Cache::forever('catalogoBg',$path);
 
 
         $categories =Category::with('products.images')
