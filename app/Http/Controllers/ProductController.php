@@ -73,9 +73,8 @@ class ProductController extends Controller
 
         
        $product = Product::create($request->except('_token'));
-       $product = Product::with('category')->find($product->id);
-       
-       return;
+      $product->slug = str_slug($product->name);
+      $product->save();
     }
 
     public function destroy($id)
