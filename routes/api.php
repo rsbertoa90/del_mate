@@ -157,6 +157,7 @@ Route::group(['middleware' => 'CheckAdmin'], function () {
     Route::post('/suplier','SuplierController@create');
 
     Route::post('/category','CategoryController@create');
+    Route::delete('/category/{id}','CategoryController@destroy');
     Route::put('/category','CategoryController@update');
 
      Route::post('/category/image','CategoryController@uploadImage');

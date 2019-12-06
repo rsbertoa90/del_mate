@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Cache;
 class CategoryController extends Controller
 {
     public function getAll(){
-        return Category::with('products.images')->orderBy('name')->get();
+        return Category::with('products.images')->orderBy('prio')->orderBy('name')->get();
         
         
     }
@@ -44,7 +44,17 @@ class CategoryController extends Controller
         $category->name = $request->name;
         $category->save();
     
-        return $category;
+        return ;
+    }
+    public function create(Request $request)
+    {
+        $this->forgetCaches();
+       
+        $category = new Category();
+        $category->name = $request->name;
+        $category->save();
+    
+        return ;
     }
 
     public function update(Request $request)

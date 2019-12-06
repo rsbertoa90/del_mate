@@ -41,7 +41,7 @@ class Category extends Model
                     }])
                     ->whereHas('products' , function($q){
                 $q->where('paused',0)->orderBy('name');
-            })->orderby('name')->get();
+            })->orderBy('prio')->orderby('name')->get();
         });
         
     }
