@@ -22,7 +22,7 @@ class Category extends Model
 
     public function products()
     {
-        return $this->hasMany(Product::class)->orderBy('name');
+        return $this->hasMany(Product::class)->orderBy('prio')->orderBy('name');
     }
 
     public function setNameAttribute($name)

@@ -132,7 +132,9 @@ Route::post('/searchHistory','SearchHistoryController@save');
 /* ADMIN */
 Route::group(['middleware' => 'CheckAdmin'], function () {
     //
-
+    Route::post('/homeimg','ConfigController@homeimg'); 
+    Route::post('/logo','ConfigController@changelogo'); 
+    
      Route::get('/orders','OrderController@get');
      Route::get('/canceled-orders','OrderController@getCanceledOrders');
 
