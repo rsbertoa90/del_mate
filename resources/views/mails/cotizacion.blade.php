@@ -8,10 +8,10 @@
         </p> 
         <p>
             Te dejamos nuestro nro de contacto por cualquier consulta
-            <ul>
-                <li>Whatsapp: 11 2708 2683</li>
-                <li>Tel fijo: (11) 4970 6452. Saludos!</li>
-            </ul>    
+            <br>
+
+            Whatsapp: {{$config->wha}}
+                
         </p> 
         
         <p>
@@ -22,7 +22,7 @@
         </p>
 
         <p>
-            Gracias por elegir Bazar Mayorista del Mate!
+            Gracias por elegir Mayorista del Mate!
         </p>
 
     </div>

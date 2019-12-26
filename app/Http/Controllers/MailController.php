@@ -17,8 +17,8 @@ class MailController extends Controller
 {
 
     public static function mailAdmin($email){
-                    Mail::to('mayoristadelmate@gmail.com')
-                    ->bcc('gisellaRomina678@gmail.com')
+                    Mail::to('delmatedistribuidora@gmail.com')
+                    ->bcc('jalbsanchez@gmail.com')
                     ->send($email);
   }
 
@@ -63,9 +63,10 @@ class MailController extends Controller
       }
 
       $order = Order::find($order->id);
-       
+      $config = Config::find(1); 
+
       Mail::to($order->email)
-            ->send(new Cotizacion($order));
+            ->send(new Cotizacion($order,$config));
 
        self::mailAdmin(new Aviso());
             

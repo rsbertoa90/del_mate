@@ -18,9 +18,10 @@ class Cotizacion extends Mailable
      *
      * @return void
      */
-    public function __construct($order)
+    public function __construct($order,$config)
     {
         $this->order = $order ;
+        $this->config=$config;
     }
 
     /**
@@ -30,7 +31,7 @@ class Cotizacion extends Mailable
      */
     public function build()
     {
-        return $this->from('mayoristadelmate@gmail.com')->subject('Recibimos tu pedido!')->view('mails.cotizacion')
-            ->with(['order'=>$this->order]);
+        return $this->from('delmatedistribuidora@gmail.com')->subject('Recibimos tu pedido!')->view('mails.cotizacion')
+            ->with(['order'=>$this->order, 'config'=>$this->config]);
     }
 }

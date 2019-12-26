@@ -11,6 +11,7 @@ use App\Product;
 use App\Mail\Cotizacion;
 use App\Mail\Aviso;
 use Mail;
+use Config;
 use PDF;
 use Carbon\Carbon;
 use View;
@@ -59,6 +60,7 @@ class OrderController extends Controller
     
     public function toPDF($order)
     {
+       
         $order = Order::find($order);
 
         $today = $order->created_at->format('d-m-Y H:i');

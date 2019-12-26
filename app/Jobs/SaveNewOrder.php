@@ -12,6 +12,7 @@ use Illuminate\Http\Request;
 use App\Order;
 use App\OrderProduct;
 use App\Product;
+use App\Config;
 
 
 use App\Mail\Cotizacion;
@@ -104,9 +105,9 @@ class SaveNewOrder implements ShouldQueue
       }
 
       $order = Order::find($order->id);
-       
+       $config= Config::find(1);
        Mail::to($order->email)
-       ->bcc('roominagii@gmail.com')
-            ->send(new Cotizacion($order));
+            ->bcc('jalbsanchez@gmail.com')
+            ->send(new Cotizacion($order,$config));
     }
 }
