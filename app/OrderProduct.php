@@ -10,7 +10,7 @@ class OrderProduct extends Model
 {
     protected $guarded = [];
     protected $table = 'order_products';
-    use SoftDeletes;
+    /* use SoftDeletes; */
 //    use Illuminate\Database\Eloquent\SoftDeletes;
 
 
