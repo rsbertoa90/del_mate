@@ -41,7 +41,7 @@ class OrderController extends Controller
     public function get()
     {
          return Cache::rememberForever('orders', function () {
-               return Order::with('orderProducts.product.category')->with('city.state')->get();
+               return Order::withTrashed()->with('orderProducts.product.category')->with('city.state')->get();
         }); 
 
       
