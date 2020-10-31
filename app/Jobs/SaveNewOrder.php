@@ -106,8 +106,8 @@ class SaveNewOrder implements ShouldQueue
 
       $order = Order::find($order->id);
        $config= Config::find(1);
-       Mail::to($order->email)
+      /*  Mail::to($order->email)
             ->bcc('jalbsanchez@gmail.com')
-            ->send(new Cotizacion($order,$config));
+            ->send(new Cotizacion($order,$config)); */
     }
 }
